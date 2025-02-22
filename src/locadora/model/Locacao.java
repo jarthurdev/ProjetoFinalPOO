@@ -1,4 +1,4 @@
-package model;
+package locadora.model;
 
 import java.time.LocalDate;
 import java.time.Period;

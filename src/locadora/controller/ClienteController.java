@@ -1,5 +1,5 @@
-package controller;
-import model.Cliente;
+package locadora.controller;
+import locadora.model.Cliente;
 import java.util.ArrayList;
 
 
