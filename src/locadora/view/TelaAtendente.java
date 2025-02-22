@@ -55,7 +55,6 @@ public final class TelaAtendente extends JFrame{
         button.setFont(new Font("Arial", Font.BOLD, 16));
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
         panel.add(button);
-
     }
 
      public static void main(String[] args) {
