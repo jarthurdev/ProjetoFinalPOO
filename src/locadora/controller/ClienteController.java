@@ -1,13 +1,17 @@
 package locadora.controller;
-import locadora.model.Cliente;
 import java.util.ArrayList;
+import java.util.Iterator;
+import locadora.model.Cliente;
 
 
 public class ClienteController {
 
     private ArrayList<Cliente> listaCliente;
-   
 
+    public ClienteController() {
+        this.listaCliente = new ArrayList<>();
+    }
+   
     public void cadastrarCliente(Cliente cliente){
 
         this.listaCliente.add(cliente);
@@ -25,15 +29,17 @@ public class ClienteController {
         return null;  
     }
 
-    public void removerCliente(String nome){
-
-        for(Cliente cliente : listaCliente){
-
-            if(cliente.getNome().equalsIgnoreCase(nome)){
-             listaCliente.remove(cliente);
+    public void removerCliente(String nome) {
+        // Usa um Iterator para evitar ConcurrentModificationException
+        Iterator<Cliente> iterator = listaCliente.iterator();
+        while (iterator.hasNext()) {
+            Cliente cliente = iterator.next();
+            if (cliente.getNome().equalsIgnoreCase(nome)) {
+                iterator.remove(); // Remove de forma segura
+                break; // Sai do loop após remover o primeiro encontrado
             }
         }
-    }   
+    }  
 
     public String toString(){
 
@@ -41,17 +47,12 @@ public class ClienteController {
 
         for(Cliente cliente : listaCliente){
 
-            lista += cliente.toString() + "\n";
+            lista += cliente.toString() + "\n\n";
 
         }
         
         return lista;
 
     }
-
-
-
-
-
 
 }
