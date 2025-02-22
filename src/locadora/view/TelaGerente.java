@@ -54,6 +54,7 @@ public final class TelaGerente extends JFrame{
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
         panel.add(button);
 
+        button.addActionListener(l -> new TelaCadastroCliente());
     }
 
     public void visualizarRelatorio(JPanel panel){
