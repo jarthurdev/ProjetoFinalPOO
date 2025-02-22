@@ -14,6 +14,7 @@ public class Pagamento {
     public Pagamento(double valor, int id,int idLocacao, String metodo){
         this.valor = valor;
         this.id = id;
+        this.idLocacao = idLocacao;
         this.metodo = metodo;
         this.dataPagamento = LocalDate.now();
     }

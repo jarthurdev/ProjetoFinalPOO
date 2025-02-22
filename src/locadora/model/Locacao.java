@@ -11,7 +11,7 @@ public class Locacao {
     
     protected Veiculo veiculo;
     protected Cliente cliente;
-    
+
     public LocalDate getDataLocacao() {
         return dataLocacao;
     }
