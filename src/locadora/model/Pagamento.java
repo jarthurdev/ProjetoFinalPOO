@@ -6,10 +6,12 @@ public class Pagamento {
 
     private double valor;
     private int id;
+    private int idLocacao;
     private String metodo;
     private LocalDate dataPagamento;
     
-    public Pagamento(double valor, int id, String metodo){
+
+    public Pagamento(double valor, int id,int idLocacao, String metodo){
         this.valor = valor;
         this.id = id;
         this.metodo = metodo;
