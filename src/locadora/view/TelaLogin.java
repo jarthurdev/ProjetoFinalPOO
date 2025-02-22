@@ -7,7 +7,7 @@ public class TelaLogin extends JFrame{
 
     public TelaLogin() {
 
-        setSize(800,600);
+        setSize(700,700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(null);
