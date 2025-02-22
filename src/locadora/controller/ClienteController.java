@@ -14,11 +14,22 @@ public class ClienteController {
 
     }
 
-    public Cliente buscarCliente(String nome){
+    public Cliente buscarNome(String nome){
 
         for(Cliente cliente : listaCliente){
 
             if(cliente.getNome().equalsIgnoreCase(nome)){
+                return cliente;
+            }
+        }
+        return null;  
+    }
+
+    public Cliente buscarCPF(String cpf){
+
+        for(Cliente cliente : listaCliente){
+
+            if(cliente.getCpf().equalsIgnoreCase(cpf)){
                 return cliente;
             }
         }

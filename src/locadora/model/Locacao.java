@@ -8,6 +8,7 @@ public class Locacao {
     private LocalDate dataDevolucao;
     private int valorLocacao;
     
+    
     protected Veiculo veiculo;
     protected Cliente cliente;
     protected Locacao locacao;
