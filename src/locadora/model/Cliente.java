@@ -3,7 +3,7 @@ package locadora.model;
 public class Cliente {
     private String nome;
     private String cpf;
-    private Integer telefone;
+    private String telefone;
     private String email;
     
     public String getNome() {
@@ -18,10 +18,10 @@ public class Cliente {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-    public Integer getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
-    public void setTelefone(Integer telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
     public String getEmail() {
@@ -31,7 +31,7 @@ public class Cliente {
         this.email = email;
     }
 
-    public Cliente(String nome, String cpf, Integer telefone, String email) {
+    public Cliente(String nome, String cpf, String telefone, String email) {
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
@@ -40,7 +40,7 @@ public class Cliente {
 
     public String toString(){
 
-        return "Nome: " + this.nome + "\nCPF: " + this.cpf + "\nTelefone: " + telefone + "Email: " + email;
+        return "Nome: " + this.nome + "\nCPF: " + this.cpf + "\nTelefone: " + telefone + "\nEmail: " + email;
 
     }
 }

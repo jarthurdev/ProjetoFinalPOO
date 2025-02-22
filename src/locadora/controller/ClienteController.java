@@ -1,13 +1,16 @@
 package locadora.controller;
-import locadora.model.Cliente;
 import java.util.ArrayList;
+import locadora.model.Cliente;
 
 
 public class ClienteController {
 
     private ArrayList<Cliente> listaCliente;
-   
 
+    public ClienteController() {
+        this.listaCliente = new ArrayList<>();
+    }
+   
     public void cadastrarCliente(Cliente cliente){
 
         this.listaCliente.add(cliente);
@@ -25,6 +28,7 @@ public class ClienteController {
         return null;  
     }
 
+<<<<<<< HEAD
     public Cliente buscarCPF(String cpf){
 
         for(Cliente cliente : listaCliente){
@@ -42,9 +46,17 @@ public class ClienteController {
 
             if(cliente.getNome().equalsIgnoreCase(nome)){
              listaCliente.remove(cliente);
+=======
+    public boolean removerCliente(String nome) {
+        for (Cliente c : listaCliente) {
+            if (c.getNome().equalsIgnoreCase(nome)) {
+                listaCliente.remove(c);
+                return true;
+>>>>>>> main
             }
         }
-    }   
+        return false;
+    } 
 
     public String toString(){
 
@@ -52,17 +64,12 @@ public class ClienteController {
 
         for(Cliente cliente : listaCliente){
 
-            lista += cliente.toString() + "\n";
+            lista += cliente.toString() + "\n\n";
 
         }
         
         return lista;
 
     }
-
-
-
-
-
 
 }
