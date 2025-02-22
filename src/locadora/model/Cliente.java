@@ -1,40 +1,46 @@
 package locadora.model;
 
 public class Cliente {
-
     private String nome;
     private String cpf;
-    private int telefone;
+    private Integer telefone;
     private String email;
+    
+    public String getNome() {
+        return nome;
+    }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    public String getCpf() {
+        return cpf;
+    }
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+    public Integer getTelefone() {
+        return telefone;
+    }
+    public void setTelefone(Integer telefone) {
+        this.telefone = telefone;
+    }
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-    public Cliente(String nome, String cpf, String endereco, int telefone, String email) {
+    public Cliente(String nome, String cpf, Integer telefone, String email) {
         this.nome = nome;
         this.cpf = cpf;
-        this.endereco = endereco;
         this.telefone = telefone;
         this.email = email;
     }
 
-    public String getNome() {
-        return nome;
-    }
+    public String toString(){
 
-    public String getCpf() {
-        return cpf;
-    }
+        return "Nome: " + this.nome + "\nCPF: " + this.cpf + "\nTelefone: " + telefone + "Email: " + email;
 
-
-    public int getTelefone() {
-        return telefone;
     }
-
-    public String getEmail() {
-        return email;
-    }
-
-    @Override
-    public String toString() {
-        return "Cliente{" + "nome=" + nome + ", cpf=" + cpf + ", telefone=" + telefone + ", email=" + email + '}';
-    }
-    
 }
