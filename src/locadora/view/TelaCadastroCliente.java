@@ -73,21 +73,30 @@ public class TelaCadastroCliente extends JFrame {
 
         // Botão de cadastrar
         JButton botaoCadastrar = new JButton("Cadastrar");
-        botaoCadastrar.setBounds(50, 250, 150, 30);
+        botaoCadastrar.setBounds(50, 250, 120, 30);
         botaoCadastrar.setBackground(new Color(0, 128, 0));
         botaoCadastrar.setForeground(Color.WHITE);
-        botaoCadastrar.setFont(new Font("Arial", Font.BOLD, 16));
+        botaoCadastrar.setFont(new Font("Arial", Font.BOLD, 14));
         botaoCadastrar.setCursor(new Cursor(Cursor.HAND_CURSOR));
         panel.add(botaoCadastrar);
 
         // Botão de listar clientes
-        JButton botaoListar = new JButton("Listar Clientes");
-        botaoListar.setBounds(220, 250, 150, 30);
+        JButton botaoListar = new JButton("Listar");
+        botaoListar.setBounds(180, 250, 100, 30);
         botaoListar.setBackground(new Color(0, 0, 128));
         botaoListar.setForeground(Color.WHITE);
-        botaoListar.setFont(new Font("Arial", Font.BOLD, 16));
+        botaoListar.setFont(new Font("Arial", Font.BOLD, 14));
         botaoListar.setCursor(new Cursor(Cursor.HAND_CURSOR));
         panel.add(botaoListar);
+
+        // Botão de remover cliente
+        JButton botaoRemover = new JButton("Remover");
+        botaoRemover.setBounds(290, 250, 120, 30);
+        botaoRemover.setBackground(new Color(178, 34, 34)); // Vermelho escuro
+        botaoRemover.setForeground(Color.WHITE);
+        botaoRemover.setFont(new Font("Arial", Font.BOLD, 14));
+        botaoRemover.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        panel.add(botaoRemover);
 
         // Área de exibição de clientes
         areaListaClientes = new JTextArea();
@@ -107,6 +116,13 @@ public class TelaCadastroCliente extends JFrame {
         botaoListar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 listarClientes();
+            }
+        });
+
+        // Ação do botão de remover
+        botaoRemover.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                removerCliente();
             }
         });
 
@@ -139,6 +155,24 @@ public class TelaCadastroCliente extends JFrame {
     // Método para listar clientes
     private void listarClientes() {
         areaListaClientes.setText(clienteController.toString());
+    }
+
+    // Método para remover cliente pelo nome
+    private void removerCliente() {
+        String nome = JOptionPane.showInputDialog(this, "Digite o nome do cliente a ser removido:", "Remover Cliente", JOptionPane.QUESTION_MESSAGE);
+
+        if (nome == null || nome.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Nome inválido!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        boolean removido = clienteController.removerCliente(nome.trim());
+
+        if (removido) {
+            JOptionPane.showMessageDialog(this, "Cliente removido com sucesso!");
+        } else {
+            JOptionPane.showMessageDialog(this, "Cliente não encontrado!", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     public static void main(String[] args) {

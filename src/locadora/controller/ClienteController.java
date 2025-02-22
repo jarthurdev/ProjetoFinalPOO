@@ -1,6 +1,5 @@
 package locadora.controller;
 import java.util.ArrayList;
-import java.util.Iterator;
 import locadora.model.Cliente;
 
 
@@ -29,17 +28,15 @@ public class ClienteController {
         return null;  
     }
 
-    public void removerCliente(String nome) {
-        // Usa um Iterator para evitar ConcurrentModificationException
-        Iterator<Cliente> iterator = listaCliente.iterator();
-        while (iterator.hasNext()) {
-            Cliente cliente = iterator.next();
-            if (cliente.getNome().equalsIgnoreCase(nome)) {
-                iterator.remove(); // Remove de forma segura
-                break; // Sai do loop após remover o primeiro encontrado
+    public boolean removerCliente(String nome) {
+        for (Cliente c : listaCliente) {
+            if (c.getNome().equalsIgnoreCase(nome)) {
+                listaCliente.remove(c);
+                return true;
             }
         }
-    }  
+        return false;
+    } 
 
     public String toString(){
 
