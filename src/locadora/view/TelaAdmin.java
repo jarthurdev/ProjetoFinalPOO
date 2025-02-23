@@ -7,10 +7,11 @@ public final class TelaAdmin extends JFrame{
     
     public TelaAdmin() {
 
-        setSize(800,600);
+        setSize(400,400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(null);
+        setResizable(false);
         setTitle("Tela do administrador do sistema"); 
         JPanel panel = new JPanel();
         panel.setBounds(0, 0, 800, 600);
@@ -26,8 +27,8 @@ public final class TelaAdmin extends JFrame{
     }
 
     public void addLabel(JPanel panel){ 
-        JLabel label = new JLabel("Locadora de Veículos");
-        label.setBounds(300, 50, 250, 30);
+        JLabel label = new JLabel("Bem-vindo, administrador!");
+        label.setBounds(65, 50, 300, 30);
         label.setForeground(Color.WHITE);
         label.setFont(new Font("Arial", Font.BOLD, 20));
         panel.add(label);
@@ -35,7 +36,7 @@ public final class TelaAdmin extends JFrame{
 
     public void cadastrarAdmin(JPanel panel){
         JButton button = new JButton("Cadastrar administrador");
-        button.setBounds(300, 100, 200, 30);
+        button.setBounds(80, 100, 230, 30);
         button.setBackground(new Color(0, 128, 0));
         button.setForeground(Color.WHITE);
         button.setFocusPainted(false);
@@ -46,7 +47,7 @@ public final class TelaAdmin extends JFrame{
 
     public void cadastrarGerente(JPanel panel){
         JButton button = new JButton("Cadastrar gerente");
-        button.setBounds(300, 150, 200, 30);
+        button.setBounds(80, 150, 230, 30);
         button.setBackground(new Color(0, 128, 0));
         button.setForeground(Color.WHITE);
         button.setFocusPainted(false);
@@ -58,7 +59,7 @@ public final class TelaAdmin extends JFrame{
 
     public void cadastrarAtendente(JPanel panel){
         JButton button = new JButton("Cadastrar atendente");
-        button.setBounds(300, 200, 200, 30);
+        button.setBounds(80, 200, 230, 30);
         button.setBackground(new Color(0, 128, 0));
         button.setForeground(Color.WHITE);
         button.setFocusPainted(false);

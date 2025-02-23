@@ -11,6 +11,7 @@ public class TelaLogin extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(null);
+        setResizable(false);
         
         JPanel panel = new JPanel();
         panel.setBounds(0, 0, 400, 400);
@@ -53,7 +54,6 @@ public class TelaLogin extends JFrame{
         senha.setBackground(new Color(240,240,240));
         senha.setFont(new Font("Arial", Font.BOLD, 20));
 
-
         JButton submit = new JButton("Entrar");
         submit.setBounds(100, 200, 200, 30);
         submit.setBackground(new Color(0, 128, 0));
@@ -92,5 +92,4 @@ public class TelaLogin extends JFrame{
      public static void main(String[] args) {
         new TelaLogin();
     }
-
 }

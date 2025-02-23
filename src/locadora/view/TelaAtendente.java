@@ -7,11 +7,13 @@ public final class TelaAtendente extends JFrame{
     
     public TelaAtendente() {
 
-        setSize(800,600);
+        setSize(400,400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(null);
         setTitle("Tela do Atendente");
+        setResizable(false);
+
         
         JPanel panel = new JPanel();
         panel.setBounds(0, 0, 800, 600);
@@ -26,8 +28,8 @@ public final class TelaAtendente extends JFrame{
     }
 
     public void addLabel(JPanel panel){ 
-        JLabel label = new JLabel("Locadora de Veículos");
-        label.setBounds(300, 50, 250, 30);
+        JLabel label = new JLabel("Bem-vindo, atendente!");
+        label.setBounds(90, 50, 300, 30);
         label.setForeground(Color.WHITE);
         label.setFont(new Font("Arial", Font.BOLD, 20));
         panel.add(label);
@@ -35,7 +37,7 @@ public final class TelaAtendente extends JFrame{
 
     public void registrarLocacao(JPanel panel){
         JButton button = new JButton("Registrar locação");
-        button.setBounds(300, 100, 200, 30);
+        button.setBounds(100, 100, 200, 30);
         button.setBackground(new Color(0, 128, 0));
         button.setForeground(Color.WHITE);
         button.setFocusPainted(false);
@@ -48,7 +50,7 @@ public final class TelaAtendente extends JFrame{
 
     public void registrarDevolucao(JPanel panel){
         JButton button = new JButton("Registrar devolução");
-        button.setBounds(300, 150, 200, 30);
+        button.setBounds(100, 150, 200, 30);
         button.setBackground(new Color(0, 128, 0));
         button.setForeground(Color.WHITE);
         button.setFocusPainted(false);

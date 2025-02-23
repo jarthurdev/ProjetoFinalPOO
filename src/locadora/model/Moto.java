@@ -8,4 +8,8 @@ public class Moto extends Veiculo {
     public Moto(String placa, String modelo, Integer ano) {
         super(placa, modelo, ano);
     }
+
+    public String toString() {
+        return "Moto - [ Placa: " + getPlaca() + ", Modelo: " + getModelo() + ", Ano: " + getAno() + " ]";
+    }
 }

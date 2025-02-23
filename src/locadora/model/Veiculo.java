@@ -28,4 +28,8 @@ public abstract class Veiculo {
         this.ano = ano;
         this.status = true;
     }
+
+    public String toString() {
+        return String.format("Modelo: %s\nAno: %d\nPlaca: %s", modelo, ano, placa);
+    }
 }

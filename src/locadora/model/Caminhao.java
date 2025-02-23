@@ -8,4 +8,8 @@ public class Caminhao extends Veiculo {
     public Caminhao(String placa, String modelo, Integer ano) {
         super(placa, modelo, ano);
     }
+
+    public String toString() {
+        return "Caminhão - [ Placa: " + getPlaca() + ", Modelo: " + getModelo() + ", Ano: " + getAno() + " ]";
+    }
 }

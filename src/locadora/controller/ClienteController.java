@@ -19,7 +19,7 @@ public class ClienteController {
 
     public Cliente buscarCliente(String nome){
 
-        for(Cliente cliente : listaCliente){
+        for(Cliente cliente : this.listaCliente){
 
             if(cliente.getNome().equalsIgnoreCase(nome)){
                 return cliente;
