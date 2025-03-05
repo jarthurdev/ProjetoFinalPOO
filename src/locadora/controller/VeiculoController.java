@@ -14,7 +14,7 @@ public class VeiculoController {
     private ArrayList<Veiculo> listaVeiculos = new ArrayList<>();
 
     private final Gson gson;
-    private final String arquivo = "C:\\Users\\User\\Documents\\ProjetoFinalPOO\\ProjetoFinalPOO\\src\\locadora\\dao\\VeiculoDAO.json";
+    private final String arquivo = "src/locadora/dao/VeiculoDAO.json";
 
     public VeiculoController() {
         this.gson = new GsonBuilder().setPrettyPrinting().create();

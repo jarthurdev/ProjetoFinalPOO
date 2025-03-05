@@ -1,8 +1,11 @@
 {
-    "java.project.sourcePaths": ["src"],
+    "java.project.sourcePaths": [
+        "src"
+    ],
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
-        "lib/**/*.jar"
+        "lib\\gson-2.12.1.jar"
+        
     ],
     "java.debug.settings.onBuildFailureProceed": true
 }

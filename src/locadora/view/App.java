@@ -7,6 +7,14 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
+
+  
+
+
+    
+        
+
+        
         Scanner scanner = new Scanner(System.in);
 
         // Criando a instância do controller
@@ -47,5 +55,8 @@ public class App {
         }
         scanner.close();
     }
-    // Método para criar um novo veículo (aqui você pode personalizar para diferentes tipos de veículos)
+
 }
+    
+    // Método para criar um novo veículo (aqui você pode personalizar para diferentes tipos de veículos)
+
