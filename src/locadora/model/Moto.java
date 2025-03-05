@@ -6,7 +6,7 @@ public class Moto extends Veiculo {
     }
 
     public Moto(String placa, String modelo, Integer ano) {
-        super(placa, modelo, ano);
+        super(placa, modelo, ano, "Moto");
     }
 
     public String toString() {

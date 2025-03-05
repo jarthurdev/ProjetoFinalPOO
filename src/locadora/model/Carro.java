@@ -6,7 +6,7 @@ public class Carro extends Veiculo {
     }
 
     public Carro(String placa, String modelo, Integer ano) {
-        super(placa, modelo, ano);
+        super(placa, modelo, ano, "Carro");
     }
 
     public String toString() {

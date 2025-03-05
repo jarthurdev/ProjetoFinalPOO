@@ -6,7 +6,7 @@ public class Caminhao extends Veiculo {
     }
     
     public Caminhao(String placa, String modelo, Integer ano) {
-        super(placa, modelo, ano);
+        super(placa, modelo, ano, "Caminhao");
     }
 
     public String toString() {

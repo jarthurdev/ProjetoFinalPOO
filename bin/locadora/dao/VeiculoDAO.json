@@ -1,0 +1,23 @@
+[
+  {
+    "placa": "ABC1234",
+    "modelo": "Sedan",
+    "ano": 2020,
+    "status": true,
+    "tipo": "Carro"
+  },
+  {
+    "placa": "XYZ5678",
+    "modelo": "Esportiva",
+    "ano": 2022,
+    "status": true,
+    "tipo": "Moto"
+  },
+  {
+    "placa": "DEF4321",
+    "modelo": "Carga",
+    "ano": 2018,
+    "status": true,
+    "tipo": "Caminhao"
+  }
+]
