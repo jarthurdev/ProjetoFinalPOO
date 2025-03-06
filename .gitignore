@@ -1,1 +1,5 @@
 *.class
+bin/locadora/controller/VeiculoController.class
+bin/locadora/dao/ClienteDAO.class
+bin/locadora/view/TelaCadastroVeiculo.class
+bin/locadora/view/App.class

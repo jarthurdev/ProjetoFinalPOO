@@ -3,6 +3,7 @@ import locadora.model.Cliente;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.lang.reflect.Type;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -19,6 +20,22 @@ public class ClienteDAO {
 
     public ClienteDAO(){
         gson = new GsonBuilder().setPrettyPrinting().create();
+        verificarECriarArquivo();
+    }
+
+    private void verificarECriarArquivo() {
+        File file = new File(arquivo);
+        try {
+            if (!file.exists()) {
+                file.getParentFile().mkdirs(); // Cria diretórios caso não existam
+                file.createNewFile(); // Cria o arquivo JSON
+                salvarLista(new ArrayList<>()); // Salva uma lista vazia no JSON
+                System.out.println("Arquivo JSON criado: " + arquivo);
+            }
+        } catch (IOException e) {
+            System.err.println("Erro ao criar o arquivo JSON: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     public void salvarLista(ArrayList<Cliente> listaCLiente) {
@@ -40,6 +57,7 @@ public class ClienteDAO {
             lista = gson.fromJson(reader, tipoLista);
             
             if (lista==null){
+                System.out.println("Lista Vazia, criando nova lista");
                 return new ArrayList<Cliente>();
             }
 
