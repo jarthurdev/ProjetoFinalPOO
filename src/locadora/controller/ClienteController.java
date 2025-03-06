@@ -40,6 +40,10 @@ public class ClienteController {
 
     public String toString(){
 
+        if(listaCliente.isEmpty()){
+            System.out.println("A lista está vazia");
+        }
+
         String lista = "";
 
         for(Cliente cliente : listaCliente){

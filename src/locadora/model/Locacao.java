@@ -51,4 +51,15 @@ public class Locacao {
         return this.veiculo.calcularCustoLocacao() * returnPeriodo();
     }
     
+    public String toString(){
+
+        return "Cliente: " + cliente.getNome() + 
+        "\nVeículo: " + veiculo.getModelo() + 
+        "\nID: " + this.id + 
+        "\nValor: " + this.valorLocacao + 
+        "\nData de locação: " + this.dataLocacao + 
+        "\nData de devolução: " + this.dataDevolucao + "\n";
+
+    }
+
 }

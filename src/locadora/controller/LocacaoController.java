@@ -31,4 +31,23 @@ public class LocacaoController {
         return null;
     }
 
+    public void carregarListaLocacoes(ArrayList<Locacao> lista){
+
+        this.listaLocacoes = lista;
+
+    }
+
+    public String toString(){
+
+        String str = "";
+
+        if(listaLocacoes.isEmpty()){
+            return "A lista está vazia";
+        }
+
+        for(Locacao L : listaLocacoes){
+            str += L.toString();
+        }
+        return str;
+    }
 }

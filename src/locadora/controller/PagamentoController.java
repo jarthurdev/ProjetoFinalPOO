@@ -2,6 +2,7 @@ package locadora.controller;
 
 import java.util.ArrayList;
 
+import locadora.model.Locacao;
 import locadora.model.Pagamento;
 
 public class PagamentoController {
@@ -22,10 +23,16 @@ public class PagamentoController {
         }
     }
 
-    public void listarPagamentos(){
-        for (Pagamento pagamento : pagamentos) {
-            System.out.println(pagamento.toString());
+    public String toString(){
+
+        String str = "";
+        if(pagamentos.isEmpty()){
+            return "A lista está vazia";
         }
+        for(Pagamento L : pagamentos){
+            str += L.toString();
+        }
+        return str;
     }
 
 }
