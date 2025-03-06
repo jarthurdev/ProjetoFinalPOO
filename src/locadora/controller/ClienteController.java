@@ -49,6 +49,15 @@ public class ClienteController {
         }
         
         return lista;
+    }
+
+    public ArrayList<Cliente> retornarListaClientes(){
+        return this.listaCliente;
+    }
+
+    public void carregarListaClientes(ArrayList<Cliente> lista){
+
+        this.listaCliente = lista;
 
     }
 

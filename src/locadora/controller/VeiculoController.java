@@ -11,6 +11,7 @@ import com.google.gson.*;
 import locadora.model.Veiculo;
 
 public class VeiculoController {
+    
     private ArrayList<Veiculo> listaVeiculos = new ArrayList<>();
 
     private final Gson gson;
