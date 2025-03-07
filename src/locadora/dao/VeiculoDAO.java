@@ -25,6 +25,7 @@ public class VeiculoDAO {
         this.gson = new GsonBuilder().setPrettyPrinting().create();
 
         verificarECriarArquivo();
+        
     }
 
     private void verificarECriarArquivo() {
