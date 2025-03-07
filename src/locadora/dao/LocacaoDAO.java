@@ -7,7 +7,9 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
 import java.lang.reflect.Type;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.time.Period;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -21,7 +23,10 @@ public class LocacaoDAO {
     private final Gson gson;
 
     public LocacaoDAO(){
-        gson = new GsonBuilder().setPrettyPrinting().create();
+        gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+        .registerTypeAdapter(Period.class, new PeriodAdapter())
+        .setPrettyPrinting().create();
+
         verificarECriarArquivo();
     }
 

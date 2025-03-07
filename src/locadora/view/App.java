@@ -1,20 +1,21 @@
 package locadora.view;
 
-import locadora.controller.VeiculoController;
-
-
+import java.util.ArrayList;
+import locadora.dao.*;
+import locadora.model.*;
+import locadora.controller.*;
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
 
-  
+        PagamentoDAO salvarPagamentoDAO = new PagamentoDAO();
 
-
+        ArrayList<Pagamento> pagamentos = salvarPagamentoDAO.carregarLista();
     
-        
+        pagamentos.toString();
 
-        
+    /* 
         Scanner scanner = new Scanner(System.in);
 
         // Criando a instância do controller
@@ -54,8 +55,11 @@ public class App {
             }
         }
         scanner.close();
-    }
 
+
+
+        */
+    }
 }
     
     // Método para criar um novo veículo (aqui você pode personalizar para diferentes tipos de veículos)

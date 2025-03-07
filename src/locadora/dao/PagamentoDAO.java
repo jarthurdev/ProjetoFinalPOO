@@ -6,12 +6,13 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
 import java.lang.reflect.Type;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-
+import locadora.dao.LocalDateAdapter;
 import locadora.model.Pagamento;
 
 public class PagamentoDAO {
@@ -20,7 +21,9 @@ private final String arquivo = "src/locadora/dao/PagamentoDAO.json";
     private final Gson gson;
 
     public PagamentoDAO(){
-        gson = new GsonBuilder().setPrettyPrinting().create();
+        gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).setPrettyPrinting()
+        .create();
+
         verificarECriarArquivo();
     }
 
@@ -55,7 +58,7 @@ private final String arquivo = "src/locadora/dao/PagamentoDAO.json";
             Type tipoLista = new TypeToken<ArrayList<Pagamento>>(){}.getType();
             ArrayList<Pagamento> lista = gson.fromJson(reader, tipoLista);
             
-            if (lista==null){
+            if (lista.isEmpty() || lista == null){
                 System.out.println("Lista Vazia, criando nova lista");
                 return new ArrayList<Pagamento>();
             }
