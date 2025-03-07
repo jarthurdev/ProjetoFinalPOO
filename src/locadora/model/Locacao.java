@@ -37,7 +37,19 @@ public class Locacao {
         this.id = id;
     }
 
-
+    public Veiculo getVeiculo() {
+        return veiculo;
+    }
+    public void setVeiculo(Veiculo veiculo) {
+        this.veiculo = veiculo;
+    }
+    public Cliente getCliente() {
+        return cliente;
+    }
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+    
     public Locacao(Veiculo veiculo, Cliente cliente, Locacao locacao) {
         this.veiculo = veiculo;
         this.cliente = cliente;

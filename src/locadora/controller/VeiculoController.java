@@ -42,4 +42,13 @@ public class VeiculoController {
         }
         return sb.toString();
     }
+
+    public void setListaVeiculos(ArrayList<Veiculo> lista){
+        this.listaVeiculos = lista;
+    }
+
+    public ArrayList<Veiculo> retornarListaVeiculos(){
+        return this.listaVeiculos;
+    }
+
 }

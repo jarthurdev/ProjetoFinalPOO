@@ -4,8 +4,10 @@
     ],
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
-        "lib\\gson-2.12.1.jar"
-        
+        "lib\\io-9.0.0.jar",
+        "c:\\Users\\brunn\\OneDrive\\Documentos\\Projeto FInal - POO\\ProjetoFinalPOO\\lib\\gson-2.12.1.jar",
+        "c:\\Users\\brunn\\OneDrive\\Documentos\\Projeto FInal - POO\\ProjetoFinalPOO\\lib\\layout-9.0.0.jar",
+        "c:\\Users\\brunn\\OneDrive\\Documentos\\Projeto FInal - POO\\ProjetoFinalPOO\\lib\\kernel-9.0.0.jar"
     ],
     "java.debug.settings.onBuildFailureProceed": true
 }

@@ -19,6 +19,16 @@ public class Pagamento {
         this.dataPagamento = LocalDate.now();
     }
 
+    public Locacao getLocacao() {
+        return locacao;
+    }
+
+    public void setLocacao(Locacao locacao) {
+        this.locacao = locacao;
+    }
+
+
+
     public double getValor() {
         return valor;
     }

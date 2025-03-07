@@ -3,6 +3,7 @@ package locadora.view;
 import java.awt.*;
 import javax.swing.*;
 import locadora.controller.VeiculoController;
+import locadora.dao.VeiculoDAO;
 import locadora.model.Caminhao;
 import locadora.model.Carro;
 import locadora.model.Moto;
@@ -16,6 +17,7 @@ public class TelaCadastroVeiculo extends JDialog {
     private JComboBox<String> comboTipo;
     private VeiculoController veiculoController;
     private JTextArea areaVeiculos;
+    private VeiculoDAO veiculodao;
 
     public TelaCadastroVeiculo(JFrame parent) {
         super(parent, "Cadastro de Veículo", true);
@@ -26,7 +28,8 @@ public class TelaCadastroVeiculo extends JDialog {
         setResizable(false);
     
         veiculoController = new VeiculoController();
-    
+        veiculodao = new VeiculoDAO();
+
         JPanel panel = new JPanel();
         panel.setBounds(0, 0, 400, 600);
         panel.setLayout(null);
@@ -85,7 +88,7 @@ public class TelaCadastroVeiculo extends JDialog {
         botaoCadastrar.addActionListener(e -> cadastrarVeiculo());
         botaoRemover.addActionListener(e -> removerVeiculo());
     
-        veiculoController.carregarLista(); // 🔵 MOVIDO PARA AQUI, APÓS A INICIALIZAÇÃO DOS COMPONENTES
+        veiculoController.setListaVeiculos(veiculodao.carregarLista()); // 🔵 MOVIDO PARA AQUI, APÓS A INICIALIZAÇÃO DOS COMPONENTES
         listarVeiculos(); // 🔵 AGORA NÃO VAI CAUSAR NullPointerException
     
         setVisible(true);
@@ -123,7 +126,7 @@ public class TelaCadastroVeiculo extends JDialog {
         }
 
         veiculoController.cadastrarVeiculo(veiculo);
-        veiculoController.salvarLista(); // Salva a lista após cadastrar
+        veiculodao.salvarLista(veiculoController.retornarListaVeiculos()); // Salva a lista após cadastrar
         JOptionPane.showMessageDialog(this, "Veículo cadastrado com sucesso!");
         listarVeiculos(); // Atualiza a lista após cadastrar
     }
@@ -136,7 +139,7 @@ public class TelaCadastroVeiculo extends JDialog {
 
             if (veiculoRemovido != null) {
                 veiculoController.removerVeiculo(veiculoRemovido);
-                veiculoController.salvarLista(); // Salva a lista após remover
+                veiculodao.salvarLista(veiculoController.retornarListaVeiculos()); // Salva a lista após remover
                 listarVeiculos(); // Atualiza a lista de veículos
                 JOptionPane.showMessageDialog(this, "Veículo removido com sucesso!");
             } else {

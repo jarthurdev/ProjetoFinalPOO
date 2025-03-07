@@ -19,5 +19,12 @@
     "ano": 2018,
     "status": true,
     "tipo": "Caminhao"
+  },
+  {
+    "placa": "xyz7777",
+    "modelo": "sedan",
+    "ano": 2015,
+    "status": true,
+    "tipo": "Carro"
   }
 ]
