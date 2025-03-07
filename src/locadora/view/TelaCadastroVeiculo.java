@@ -24,15 +24,15 @@ public class TelaCadastroVeiculo extends JDialog {
         setLocationRelativeTo(parent);
         setLayout(null);
         setResizable(false);
-
+    
         veiculoController = new VeiculoController();
-
+    
         JPanel panel = new JPanel();
         panel.setBounds(0, 0, 400, 600);
         panel.setLayout(null);
         panel.setBackground(new Color(31, 36, 33));
         add(panel);
-
+    
         JLabel labelPlaca = new JLabel("Placa:");
         campoPlaca = new JTextField();
         JLabel labelModelo = new JLabel("Modelo:");
@@ -43,10 +43,11 @@ public class TelaCadastroVeiculo extends JDialog {
         comboTipo = new JComboBox<>(new String[]{"Carro", "Moto", "Caminhão"});
         JButton botaoCadastrar = new JButton("Cadastrar");
         JButton botaoRemover = new JButton("Remover");
-        areaVeiculos = new JTextArea();
+    
+        areaVeiculos = new JTextArea(); // 🔴 AGORA ESTÁ INICIALIZADA ANTES DE CHAMAR listarVeiculos()
         areaVeiculos.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(areaVeiculos);
-
+    
         panel.add(labelPlaca);
         panel.add(campoPlaca);
         panel.add(labelModelo);
@@ -58,7 +59,7 @@ public class TelaCadastroVeiculo extends JDialog {
         panel.add(botaoCadastrar);
         panel.add(botaoRemover);
         panel.add(scrollPane);
-
+    
         labelPlaca.setBounds(20, 20, 100, 20);
         labelPlaca.setForeground(Color.WHITE);
         campoPlaca.setBounds(120, 20, 250, 20);
@@ -80,12 +81,16 @@ public class TelaCadastroVeiculo extends JDialog {
         botaoRemover.setForeground(Color.WHITE);
         botaoRemover.setFocusPainted(false);
         scrollPane.setBounds(13, 300, 360, 250);
-
+    
         botaoCadastrar.addActionListener(e -> cadastrarVeiculo());
         botaoRemover.addActionListener(e -> removerVeiculo());
-
+    
+        veiculoController.carregarLista(); // 🔵 MOVIDO PARA AQUI, APÓS A INICIALIZAÇÃO DOS COMPONENTES
+        listarVeiculos(); // 🔵 AGORA NÃO VAI CAUSAR NullPointerException
+    
         setVisible(true);
     }
+    
 
     private void cadastrarVeiculo() {
         String placa = campoPlaca.getText();
@@ -118,18 +123,20 @@ public class TelaCadastroVeiculo extends JDialog {
         }
 
         veiculoController.cadastrarVeiculo(veiculo);
+        veiculoController.salvarLista(); // Salva a lista após cadastrar
         JOptionPane.showMessageDialog(this, "Veículo cadastrado com sucesso!");
         listarVeiculos(); // Atualiza a lista após cadastrar
     }
 
     private void removerVeiculo() {
         String placa = JOptionPane.showInputDialog(this, "Digite a placa do veículo para remover:");
-        
+
         if (placa != null && !placa.trim().isEmpty()) {
             Veiculo veiculoRemovido = veiculoController.buscarVeiculoPorPlaca(placa);
-            
+
             if (veiculoRemovido != null) {
                 veiculoController.removerVeiculo(veiculoRemovido);
+                veiculoController.salvarLista(); // Salva a lista após remover
                 listarVeiculos(); // Atualiza a lista de veículos
                 JOptionPane.showMessageDialog(this, "Veículo removido com sucesso!");
             } else {

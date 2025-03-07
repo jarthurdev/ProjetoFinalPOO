@@ -23,6 +23,7 @@ public class TelaCadastroCliente extends JDialog {
         setResizable(false);
 
         clienteController = new ClienteController();
+        clienteController.carregarListaClientes(); // Carrega os clientes ao iniciar a tela
 
         JPanel panel = new JPanel();
         panel.setBounds(0, 0, 400, 600);
@@ -39,7 +40,6 @@ public class TelaCadastroCliente extends JDialog {
         JLabel labelEmail = new JLabel("E-mail:");
         campoEmail = new JTextField();
         JButton botaoCadastrar = new JButton("Cadastrar");
-        JButton botaoListar = new JButton("Listar Clientes");
         JButton botaoRemover = new JButton("Remover Cliente");
         areaClientes = new JTextArea();
         areaClientes.setEditable(false);
@@ -54,7 +54,6 @@ public class TelaCadastroCliente extends JDialog {
         panel.add(labelEmail);
         panel.add(campoEmail);
         panel.add(botaoCadastrar);
-        panel.add(botaoListar);
         panel.add(botaoRemover);
         panel.add(scrollPane);
 
@@ -74,18 +73,17 @@ public class TelaCadastroCliente extends JDialog {
         botaoCadastrar.setBackground(new Color(0, 128, 0));
         botaoCadastrar.setForeground(Color.WHITE);
         botaoCadastrar.setFocusPainted(false);
-        botaoListar.setBounds(140, 220, 120, 30);
-        botaoListar.setBackground(new Color(0, 0, 128));
-        botaoListar.setForeground(Color.WHITE);
-        botaoListar.setFocusPainted(false);
-        botaoRemover.setBounds(140, 260, 120, 30);
+        botaoRemover.setBounds(140, 220, 120, 30);
         botaoRemover.setBackground(new Color(128, 0, 0));
         botaoRemover.setForeground(Color.WHITE);
+        botaoRemover.setFocusPainted(false);
         scrollPane.setBounds(13, 300, 360, 250);
 
         botaoCadastrar.addActionListener(e -> cadastrarCliente());
-        botaoListar.addActionListener(e -> listarClientes());
         botaoRemover.addActionListener(e -> removerCliente());
+
+        // Exibe os clientes já cadastrados ao iniciar a tela
+        atualizarListaClientes();
 
         setVisible(true);
     }
@@ -104,11 +102,7 @@ public class TelaCadastroCliente extends JDialog {
         Cliente cliente = new Cliente(nome, cpf, telefone, email);
         clienteController.cadastrarCliente(cliente);
         JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
-        listarClientes();
-    }
-
-    private void listarClientes() {
-        areaClientes.setText(clienteController.toString());
+        atualizarListaClientes();
     }
 
     private void removerCliente() {
@@ -117,10 +111,15 @@ public class TelaCadastroCliente extends JDialog {
             boolean removido = clienteController.removerCliente(nome);
             if (removido) {
                 JOptionPane.showMessageDialog(this, "Cliente removido com sucesso!");
-                listarClientes();
+                atualizarListaClientes();
             } else {
                 JOptionPane.showMessageDialog(this, "Cliente não encontrado!", "Erro", JOptionPane.ERROR_MESSAGE);
             }
         }
+    }
+
+    // Atualiza a área de texto para mostrar a lista de clientes
+    private void atualizarListaClientes() {
+        areaClientes.setText(clienteController.toString());
     }
 }
