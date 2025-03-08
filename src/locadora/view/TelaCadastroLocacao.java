@@ -91,11 +91,11 @@ public class TelaCadastroLocacao extends JDialog {
 
         labelDatadeDevolucao.setBounds(20, 140, 200, 20);
         labelDatadeDevolucao.setForeground(Color.WHITE);
-        campoDatadeDevolucao.setBounds(250, 100, 100, 20);
+        campoDatadeDevolucao.setBounds(250, 140, 100, 20);
 
         labelDatadeLocacao.setBounds(20, 100, 200, 20);
         labelDatadeLocacao.setForeground(Color.WHITE);
-        campoDatadeLocacao.setBounds(250, 140, 100, 20);
+        campoDatadeLocacao.setBounds(250, 100, 100, 20);
 
         scrollPaneV.setBounds(13, 300, 360, 100);
         scrollPaneC.setBounds(13, 440, 360, 100);

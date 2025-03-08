@@ -59,7 +59,7 @@ public class Locacao {
     }
     
     public int returnPeriodo(){
-        return Period.between(dataDevolucao, dataLocacao).getDays();
+        return Period.between(dataLocacao, dataDevolucao).getDays();
     }
     
     public int calcularCustoLocacao(){

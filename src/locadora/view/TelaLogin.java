@@ -6,7 +6,7 @@ import javax.swing.*;
 public class TelaLogin extends JFrame{
 
     public TelaLogin() {
-
+        setTitle("Locadora");
         setSize(400,400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);

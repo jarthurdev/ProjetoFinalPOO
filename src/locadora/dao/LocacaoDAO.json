@@ -1,70 +1,13 @@
 [
   {
-    "dataLocacao": "2025-03-11",
-    "dataDevolucao": "2025-03-08",
-    "valorLocacao": 240,
-    "id": 0,
+    "dataLocacao": "2025-03-09",
+    "dataDevolucao": "2025-03-10",
+    "valorLocacao": 80,
+    "id": 1,
     "veiculo": {
       "placa": "ABC1234",
       "modelo": "Sedan",
       "ano": 2020,
-      "status": false,
-      "tipo": "Carro"
-    },
-    "cliente": {
-      "nome": "Arthur Antão",
-      "cpf": "123.321.231-02",
-      "telefone": "1188888888",
-      "email": "antao@gmail.com"
-    }
-  },
-  {
-    "dataLocacao": "2025-03-15",
-    "dataDevolucao": "2025-03-09",
-    "valorLocacao": 480,
-    "id": 1,
-    "veiculo": {
-      "placa": "ABC7777",
-      "modelo": "porsche",
-      "ano": 2015,
-      "status": false,
-      "tipo": "Carro"
-    },
-    "cliente": {
-      "nome": "Maria Oliveira",
-      "cpf": "987.654.321-00",
-      "telefone": "9876-5432",
-      "email": "maria.oliveira@email.com"
-    }
-  },
-  {
-    "dataLocacao": "2025-03-15",
-    "dataDevolucao": "2025-03-09",
-    "valorLocacao": 480,
-    "id": 2,
-    "veiculo": {
-      "placa": "CBA7777",
-      "modelo": "fiat fastback",
-      "ano": 2015,
-      "status": false,
-      "tipo": "Carro"
-    },
-    "cliente": {
-      "nome": "Jonas Madureira",
-      "cpf": "13287312780",
-      "telefone": "12-3812",
-      "email": "joao@"
-    }
-  },
-  {
-    "dataLocacao": "2025-03-14",
-    "dataDevolucao": "2025-03-09",
-    "valorLocacao": 400,
-    "id": 3,
-    "veiculo": {
-      "placa": "XYZ7777",
-      "modelo": "sedan",
-      "ano": 2015,
       "status": false,
       "tipo": "Carro"
     },
