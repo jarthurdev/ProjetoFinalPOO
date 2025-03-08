@@ -3,7 +3,7 @@
     "placa": "ABC1234",
     "modelo": "Sedan",
     "ano": 2020,
-    "status": true,
+    "status": false,
     "tipo": "Carro"
   },
   {

@@ -3,18 +3,21 @@ package locadora.view;
 import java.util.ArrayList;
 import locadora.dao.*;
 import locadora.model.*;
+import locadora.relatorios.RelatorioPDF;
 import locadora.controller.*;
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
 
+        RelatorioPDF pdf = new RelatorioPDF();
         PagamentoDAO salvarPagamentoDAO = new PagamentoDAO();
 
         ArrayList<Pagamento> pagamentos = salvarPagamentoDAO.carregarLista();
     
         pagamentos.toString();
 
+        pdf.gerarRelatorio(pagamentos);
     /* 
         Scanner scanner = new Scanner(System.in);
 

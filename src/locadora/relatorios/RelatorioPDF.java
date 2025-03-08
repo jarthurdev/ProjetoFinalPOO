@@ -29,7 +29,7 @@ public class  RelatorioPDF {
 
         if (!folder.exists()) {
             folder.mkdirs(); 
-
+        }
         dataHora = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date());
         String arquivoPdf = diretorio + "Relatorio_Locacoes_" + dataHora + ".pdf"; // Nome do arquivo com data e hora
         File file = new File(arquivoPdf);
@@ -78,4 +78,3 @@ public class  RelatorioPDF {
     
     }
 
-}
