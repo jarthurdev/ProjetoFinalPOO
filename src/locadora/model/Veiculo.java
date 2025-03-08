@@ -23,6 +23,10 @@ public abstract class Veiculo {
         return status;
     }
 
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
     public abstract int calcularCustoLocacao();
 
     public Veiculo(String placa, String modelo, Integer ano, String tipo) {

@@ -23,6 +23,16 @@ public class VeiculoController {
         return this.listaVeiculos;
     }
 
+    public ArrayList<Veiculo> listarVeiculosDisponiveis() {
+        ArrayList<Veiculo> veiculosDisponiveis = new ArrayList<>();
+        for (Veiculo veiculo : this.listaVeiculos) {
+            if (veiculo.isStatus()) {
+                veiculosDisponiveis.add(veiculo);
+            }
+        }
+        return veiculosDisponiveis;
+    }
+
     // Método para buscar um veículo por placa
     public Veiculo buscarVeiculoPorPlaca(String placa) {
         for (Veiculo veiculo : this.listaVeiculos) {
