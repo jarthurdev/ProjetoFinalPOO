@@ -18,6 +18,7 @@ public class TelaCadastroLocacao extends JDialog {
     private JTextField campoDatadeDevolucao;
     private VeiculoController veiculoController;
     private JTextArea areaVeiculos;
+    private JTextArea areaClientes;
     private VeiculoDAO veiculodao;
     private ClienteController clienteController;
     private LocacaoController locacaoController;
@@ -50,11 +51,16 @@ public class TelaCadastroLocacao extends JDialog {
         JLabel labelDatadeDevolucao = new JLabel("Data de devolução \n (YYYY-MM-DD): ");
         campoDatadeDevolucao = new JTextField();
         JButton botaoRegistrar = new JButton("Registrar");
+        JLabel labelDisponiveis = new JLabel("Veículos disponíveis:");
+        JLabel labelClientes = new JLabel("Clientes:");
         
-
         areaVeiculos = new JTextArea(); // Área de texto para exibir veículos
         areaVeiculos.setEditable(false);
-        JScrollPane scrollPane = new JScrollPane(areaVeiculos);
+        areaClientes = new JTextArea(); // Área de texto para exibir clientes
+        areaClientes.setEditable(false);
+        JScrollPane scrollPaneV = new JScrollPane(areaVeiculos);
+        JScrollPane scrollPaneC = new JScrollPane(areaClientes);
+        
 
         panel.add(labelPlaca);
         panel.add(campoPlaca);
@@ -62,8 +68,11 @@ public class TelaCadastroLocacao extends JDialog {
         panel.add(campoNomeCliente);
         panel.add(campoDatadeDevolucao);
         panel.add(labelDatadeDevolucao);
-        panel.add(scrollPane);
+        panel.add(scrollPaneV);
+        panel.add(scrollPaneC);
         panel.add(botaoRegistrar);
+        panel.add(labelDisponiveis);
+        panel.add(labelClientes);
 
         // Definindo posições dos componentes
         labelPlaca.setBounds(20, 20, 100, 20);
@@ -75,16 +84,37 @@ public class TelaCadastroLocacao extends JDialog {
         labelDatadeDevolucao.setBounds(20, 100, 200, 20);
         labelDatadeDevolucao.setForeground(Color.WHITE);
         campoDatadeDevolucao.setBounds(250, 100, 100, 20);
-        scrollPane.setBounds(13, 300, 360, 250);
+        scrollPaneV.setBounds(13, 300, 360, 100);
+        scrollPaneC.setBounds(13, 440, 360, 100);
         botaoRegistrar.setBounds(120, 150, 150, 30);
         botaoRegistrar.setBackground(new Color(0, 128, 0));
+        botaoRegistrar.setForeground(Color.WHITE);
+        botaoRegistrar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        botaoRegistrar.setFocusPainted(false);
+        labelDisponiveis.setBounds(20, 280, 200, 20);
+        labelDisponiveis.setForeground(Color.WHITE);
+        labelClientes.setBounds(20, 420, 200, 20);
+        labelClientes.setForeground(Color.WHITE);
 
         // Carregando a lista de veículos
         veiculoController.setListaVeiculos(veiculodao.carregarLista()); 
         listarVeiculosDisponiveis(); // Exibe veículos disponíveis
 
+        clienteController.carregarListaClientes(); // Carrega os clientes ao iniciar a tela
+        for (Cliente cliente : clienteController.retornarListaClientes()) {
+            areaClientes.append(cliente.toString() + "\n \n"); // Adiciona cada cliente à área de texto
+        }
+
         // Ação do botão Registrar
         botaoRegistrar.addActionListener(e -> {
+            // Verificar se os campos estão preenchidos
+            if (campoPlaca.getText().isEmpty() || campoNomeCliente.getText().isEmpty() || campoDatadeDevolucao.getText().isEmpty()) {
+                // Exibir mensagem de erro se algum campo estiver vazio
+                JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
+                return; // Retorna e não continua o processamento
+            }
+
+            // Caso todos os campos estejam preenchidos, continua o processo de registro
             String placa = campoPlaca.getText();
             Veiculo veiculo = veiculoController.buscarVeiculoPorPlaca(placa);
             LocalDate dataDevolucao = LocalDate.parse(campoDatadeDevolucao.getText());

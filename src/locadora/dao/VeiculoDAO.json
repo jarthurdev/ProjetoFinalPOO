@@ -26,5 +26,47 @@
     "ano": 2015,
     "status": true,
     "tipo": "Carro"
+  },
+  {
+    "placa": "cba7777",
+    "modelo": "fiat fastback",
+    "ano": 2015,
+    "status": true,
+    "tipo": "Carro"
+  },
+  {
+    "placa": "abc7777",
+    "modelo": "porsche",
+    "ano": 2015,
+    "status": true,
+    "tipo": "Carro"
+  },
+  {
+    "placa": "cab7777",
+    "modelo": "corolla",
+    "ano": 2015,
+    "status": true,
+    "tipo": "Carro"
+  },
+  {
+    "placa": "AVC5678",
+    "modelo": "POP 110",
+    "ano": 2022,
+    "status": true,
+    "tipo": "Moto"
+  },
+  {
+    "placa": "QSA5678",
+    "modelo": "BROS 160",
+    "ano": 2022,
+    "status": true,
+    "tipo": "Moto"
+  },
+  {
+    "placa": "IOT5678",
+    "modelo": "FAN 160",
+    "ano": 2022,
+    "status": true,
+    "tipo": "Moto"
   }
 ]
