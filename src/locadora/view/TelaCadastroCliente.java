@@ -3,6 +3,7 @@ package locadora.view;
 import java.awt.*;
 import javax.swing.*;
 import locadora.controller.ClienteController;
+import locadora.dao.ClienteDAO;
 import locadora.model.Cliente;
 
 public class TelaCadastroCliente extends JDialog {
@@ -13,6 +14,7 @@ public class TelaCadastroCliente extends JDialog {
     private JTextField campoEmail;
     private ClienteController clienteController;
     private JTextArea areaClientes;
+    private ClienteDAO clientedao;
 
     public TelaCadastroCliente(JFrame parent) {
         super(parent, "Cadastro de Cliente", true);
@@ -23,7 +25,8 @@ public class TelaCadastroCliente extends JDialog {
         setResizable(false);
 
         clienteController = new ClienteController();
-        clienteController.carregarListaClientes(); // Carrega os clientes ao iniciar a tela
+        clientedao = new ClienteDAO();
+        clienteController.setListaClientes(clientedao.carregarLista()); // Carrega os clientes ao iniciar a tela
 
         JPanel panel = new JPanel();
         panel.setBounds(0, 0, 400, 600);

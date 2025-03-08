@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import locadora.model.Locacao;
 
 public class LocacaoController {
+
     private ArrayList<Locacao> listaLocacoes = new ArrayList<Locacao>();
     private int id = 1;
 
@@ -18,7 +19,7 @@ public class LocacaoController {
         this.listaLocacoes.remove(locacao);
     }
 
-    public ArrayList<Locacao> listarLocacoes() {
+    public ArrayList<Locacao> getlistaLocacoes() {
         return this.listaLocacoes;
     }
 
@@ -31,20 +32,19 @@ public class LocacaoController {
         return null;
     }
 
-    public void carregarListaLocacoes(ArrayList<Locacao> lista){
-        this.listaLocacoes = lista;
-
-        if (!lista.isEmpty()) {
-            this.id = lista.stream().mapToInt(Locacao::getId).max().orElse(0) + 1;
-        }
-    }
+  
 
     public ArrayList<Locacao> getListaLocacoes(){
         return this.listaLocacoes;
     }
 
     public void setListaLocacoes(ArrayList<Locacao> listaLocacoes){
+
+        if (!listaLocacoes.isEmpty()) {
+            this.id = listaLocacoes.stream().mapToInt(Locacao::getId).max().orElse(0) + 1;
+        }
         this.listaLocacoes = listaLocacoes;
+
     }
 
     public String toString(){

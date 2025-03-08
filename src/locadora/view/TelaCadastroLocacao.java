@@ -6,6 +6,7 @@ import javax.swing.*;
 import locadora.controller.ClienteController;
 import locadora.controller.LocacaoController;
 import locadora.controller.VeiculoController;
+import locadora.dao.ClienteDAO;
 import locadora.dao.LocacaoDAO;
 import locadora.dao.VeiculoDAO;
 import locadora.model.Cliente;
@@ -25,6 +26,7 @@ public class TelaCadastroLocacao extends JDialog {
     private ClienteController clienteController;
     private LocacaoDAO locacaodao;
     private LocacaoController locacaoController;
+    private ClienteDAO clientedao;
 
     public TelaCadastroLocacao(JFrame parent) {
         super(parent, "Locação", true);
@@ -39,7 +41,8 @@ public class TelaCadastroLocacao extends JDialog {
         clienteController = new ClienteController();
         locacaoController = new LocacaoController();
         locacaodao = new LocacaoDAO();
-        locacaodao.carregarDados(locacaoController);
+        locacaoController.setListaLocacoes(locacaodao.carregarLista());
+        clientedao = new ClienteDAO();
         // Criação do painel
         JPanel panel = new JPanel();
         panel.setBounds(0, 0, 400, 600);
@@ -113,8 +116,8 @@ public class TelaCadastroLocacao extends JDialog {
         veiculoController.setListaVeiculos(veiculodao.carregarLista()); 
         listarVeiculosDisponiveis(); // Exibe veículos disponíveis
 
-        clienteController.carregarListaClientes(); // Carrega os clientes ao iniciar a tela
-        for (Cliente cliente : clienteController.retornarListaClientes()) {
+        clienteController.setListaClientes(clientedao.carregarLista()); // Carrega os clientes ao iniciar a tela
+        for (Cliente cliente : clienteController.getListaClientes()) {
             areaClientes.append(cliente.toString() + "\n \n"); // Adiciona cada cliente à área de texto
         }
 
@@ -142,7 +145,7 @@ public class TelaCadastroLocacao extends JDialog {
 
                 locacaoController.adicionarLocacao(new Locacao(veiculo, cliente, datadeLocacao, dataDevolucao));
 
-                locacaodao.salvarLista(locacaoController.listarLocacoes());
+                locacaodao.salvarLista(locacaoController.getlistaLocacoes());
             } else {
                 JOptionPane.showMessageDialog(this, "Veículo ou cliente não encontrado!");
             }

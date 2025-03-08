@@ -30,7 +30,7 @@ public class TelaDevolucao extends JDialog {
         clienteController = new ClienteController();
         locacaoController = new LocacaoController();
         locacaodao = new LocacaoDAO();
-        locacaodao.carregarDados(locacaoController);
+        locacaoController.setListaLocacoes(locacaodao.carregarLista());
     
         locacoes = locacaoController.getListaLocacoes();
     }

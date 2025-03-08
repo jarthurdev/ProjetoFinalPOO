@@ -24,7 +24,7 @@
     "placa": "XYZ7777",
     "modelo": "sedan",
     "ano": 2015,
-    "status": true,
+    "status": false,
     "tipo": "Carro"
   },
   {

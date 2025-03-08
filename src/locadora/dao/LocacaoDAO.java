@@ -80,9 +80,4 @@ public class LocacaoDAO {
             return new ArrayList<Locacao>();
         }
     }    
-
-    public void carregarDados(LocacaoController controller) {
-        ArrayList<Locacao> lista = carregarLista();
-        controller.carregarListaLocacoes(lista);
-    }
 }

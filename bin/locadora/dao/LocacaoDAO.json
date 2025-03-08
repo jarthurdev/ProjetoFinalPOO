@@ -17,5 +17,24 @@
       "telefone": "1188888888",
       "email": "antao@gmail.com"
     }
+  },
+  {
+    "dataLocacao": "2025-03-08",
+    "dataDevolucao": "2025-03-11",
+    "valorLocacao": 240,
+    "id": 2,
+    "veiculo": {
+      "placa": "XYZ7777",
+      "modelo": "sedan",
+      "ano": 2015,
+      "status": false,
+      "tipo": "Carro"
+    },
+    "cliente": {
+      "nome": "João Silva",
+      "cpf": "123.456.789-00",
+      "telefone": "1234-5678",
+      "email": "joao.silva@email.com"
+    }
   }
 ]
