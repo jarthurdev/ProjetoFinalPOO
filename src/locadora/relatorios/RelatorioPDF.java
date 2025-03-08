@@ -11,27 +11,39 @@ import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.properties.UnitValue;
 
+import java.security.ProtectionDomain;
 import java.nio.file.*;
 import java.io.File;
+import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class  RelatorioPDF {
 
+    String diretorio;
     String dataHora;
 
     // Método para gerar o relatório em formato de tabela
     public void gerarRelatorio(ArrayList<Pagamento> pagamentos) {
-        // Gerar nome do arquivo baseado na data e hora
-        
-        File desktop = new File(System.getProperty("user.dir"));
-        String diretorio = new File(desktop, "Relatórios").getAbsolutePath();
-        File folder = new File(diretorio);
 
-    if (!folder.exists()) {
-        folder.mkdirs(); // Cria a pasta Relatórios se não existir
-    }
+        try{
+        // Gerar nome do arquivo baseado na data e hora
+        diretorio = new File(RelatorioPDF.class.getProtectionDomain().getCodeSource().getLocation().toURI()).getPath();
+        diretorio = diretorio.substring(0, diretorio.lastIndexOf(File.separator));  // Remove o nome do JAR do caminho
+        diretorio += "/Relatórios/";
+        
+        File folder = new File(diretorio);
+        
+        
+        if (!folder.exists()) {
+            folder.mkdirs(); // Cria a pasta Relatórios se não existir
+            }
+        }
+        catch (URISyntaxException e){
+            System.err.println("Erro de Entrada e Saída");
+            e.printStackTrace();
+        }
 
         dataHora = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date());
         String arquivoPdf = diretorio + "/Relatorio_Locacoes_" + dataHora + ".pdf"; // Nome do arquivo com data e hora
