@@ -1,16 +1,13 @@
 package locadora.view;
 
 import java.awt.*;
-import java.time.LocalDate;
 import javax.swing.*;
 import locadora.controller.ClienteController;
 import locadora.controller.LocacaoController;
 import locadora.controller.VeiculoController;
 import locadora.dao.LocacaoDAO;
 import locadora.dao.VeiculoDAO;
-import locadora.model.Cliente;
 import locadora.model.Locacao;
-import locadora.model.Veiculo;
 
 public class TelaDevolucao extends JDialog {
 
@@ -36,6 +33,8 @@ public class TelaDevolucao extends JDialog {
         clienteController = new ClienteController();
         locacaoController = new LocacaoController();
         locacaodao = new LocacaoDAO();
+        locacaodao.carregarDados(locacaoController);
+        
 
         // Criação do painel
         JPanel panel = new JPanel();
@@ -57,7 +56,6 @@ public class TelaDevolucao extends JDialog {
         areaLocacao.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(areaLocacao);
 
-
         // Adicionando componentes ao painel
         panel.add(labelId);
         panel.add(campoId);
@@ -70,9 +68,9 @@ public class TelaDevolucao extends JDialog {
         labelId.setBounds(20, 20, 100, 20);
         labelId.setForeground(Color.WHITE);
         campoId.setBounds(120, 20, 250, 20);
-        labelDatadeDevolucao.setBounds(20, 60, 150, 20);
+        labelDatadeDevolucao.setBounds(20, 60, 200, 20);
         labelDatadeDevolucao.setForeground(Color.WHITE);
-        campoDatadeDevolucao.setBounds(170, 60, 200, 20);
+        campoDatadeDevolucao.setBounds(270, 60, 100, 20);
         scrollPane.setBounds(20, 100, 350, 400);
         botaoRegistrar.setBounds(20, 520, 350, 30);
 
@@ -81,13 +79,16 @@ public class TelaDevolucao extends JDialog {
 
         // Tornando a tela visível
         setVisible(true);
+
+        locacaoController.setListaLocacoes(locacaodao.carregarLista());
+        listarTodasLocacoes(); // Lista todas as locações ao iniciar a tela
     }
 
     // Método para listar os veículos disponíveis (status == true)
-    private void listarVeiculosDisponiveis() {
-        areaVeiculos.setText(""); // Limpa a área de texto antes de listar
-        for (Veiculo veiculo : veiculoController.listarVeiculosDisponiveis()) {
-            areaVeiculos.append(veiculo.toString() + "\n"); // Adiciona cada veículo à área de texto
+    private void listarTodasLocacoes() {
+        areaLocacao.setText(""); // Limpa a área de texto antes de listar
+        for (Locacao locacao : locacaoController.getListaLocacoes()) {
+            areaLocacao.append(locacao.toString() + "\n"); // Adiciona cada veículo à área de texto
         }
     }
 }

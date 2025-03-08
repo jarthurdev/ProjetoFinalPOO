@@ -24,21 +24,21 @@
     "placa": "XYZ7777",
     "modelo": "sedan",
     "ano": 2015,
-    "status": true,
+    "status": false,
     "tipo": "Carro"
   },
   {
     "placa": "CBA7777",
     "modelo": "fiat fastback",
     "ano": 2015,
-    "status": true,
+    "status": false,
     "tipo": "Carro"
   },
   {
     "placa": "ABC7777",
     "modelo": "porsche",
     "ano": 2015,
-    "status": true,
+    "status": false,
     "tipo": "Carro"
   },
   {

@@ -39,6 +39,14 @@ public class LocacaoController {
         }
     }
 
+    public ArrayList<Locacao> getListaLocacoes(){
+        return this.listaLocacoes;
+    }
+
+    public void setListaLocacoes(ArrayList<Locacao> listaLocacoes){
+        this.listaLocacoes = listaLocacoes;
+    }
+
     public String toString(){
 
         String str = "";

@@ -18,10 +18,10 @@ public class TelaCadastroLocacao extends JDialog {
     private JTextField campoNomeCliente;
     private JTextField campoDatadeDevolucao;
     private JTextField campoDatadeLocacao;
-    private VeiculoController veiculoController;
+    private VeiculoController veiculoController; // *************************************************
     private JTextArea areaVeiculos;
     private JTextArea areaClientes;
-    private VeiculoDAO veiculodao;
+    private VeiculoDAO veiculodao; // ************************************************************************************
     private ClienteController clienteController;
     private LocacaoDAO locacaodao;
     private LocacaoController locacaoController;
@@ -34,8 +34,8 @@ public class TelaCadastroLocacao extends JDialog {
         setLayout(null);
         setResizable(false);
 
-        veiculoController = new VeiculoController();
-        veiculodao = new VeiculoDAO();
+        veiculoController = new VeiculoController(); // *************************************************
+        veiculodao = new VeiculoDAO(); // ************************************************************************************
         clienteController = new ClienteController();
         locacaoController = new LocacaoController();
         locacaodao = new LocacaoDAO();
@@ -60,8 +60,8 @@ public class TelaCadastroLocacao extends JDialog {
         JLabel labelDisponiveis = new JLabel("Veículos disponíveis:");
         JLabel labelClientes = new JLabel("Clientes:");
         
-        areaVeiculos = new JTextArea(); // Área de texto para exibir veículos
-        areaVeiculos.setEditable(false);
+        areaVeiculos = new JTextArea(); // Área de texto para exibir veículos // *************************************************
+        areaVeiculos.setEditable(false); // ************************************************************************************
         areaClientes = new JTextArea(); // Área de texto para exibir clientes
         areaClientes.setEditable(false);
         JScrollPane scrollPaneV = new JScrollPane(areaVeiculos);
