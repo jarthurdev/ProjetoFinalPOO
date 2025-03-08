@@ -3,9 +3,17 @@ package locadora.view;
 import java.awt.*;
 import javax.swing.*;
 
-public class TelaLogin extends JFrame{
+import locadora.controller.FuncionarioController;
+import locadora.dao.FuncionarioDAO;
 
+public class TelaLogin extends JFrame{
+    FuncionarioController funcionarioController = new FuncionarioController();
+    FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
+    
     public TelaLogin() {
+        
+        funcionarioController.setFuncionarios(funcionarioDAO.carregarLista());
+
         setTitle("Locadora");
         setSize(400,400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -69,18 +77,22 @@ public class TelaLogin extends JFrame{
         panel.add(submit);
 
         submit.addActionListener(e -> {
-            if(login.getText().equals("admin") && senha.getText().equals("admin")){
-                submit.setEnabled(true);
-                new TelaAdmin();
-                dispose();
-            } else if(login.getText().equals("gerente") && senha.getText().equals("gerente")){
-                submit.setEnabled(true);
-                new TelaGerente();
-                dispose();
-            } else if(login.getText().equals("atendente") && senha.getText().equals("atendente")){
-                submit.setEnabled(true);
-                new TelaAtendente();
-                dispose();
+            if(funcionarioController.verificarLogin(login.getText(), senha.getText())){
+
+                if(funcionarioController.buscarFuncionario(login.getText(), senha.getText()).equals("Administrador")){
+                    submit.setEnabled(true);
+                    new TelaAdmin();
+                    dispose();
+                } else if(funcionarioController.buscarFuncionario(login.getText(), senha.getText()).equals("Gerente")){
+                    submit.setEnabled(true);
+                    new TelaGerente();
+                    dispose();
+                } else if(funcionarioController.buscarFuncionario(login.getText(), senha.getText()).equals("Atendente")){
+                    submit.setEnabled(true);
+                    new TelaAtendente();
+                    dispose();
+                } else {
+                }         
             } else {
                 JOptionPane.showMessageDialog(this, "Login ou senha incorretos!", "Erro", JOptionPane.ERROR_MESSAGE);
                 login.setText(""); // Limpa o campo de login

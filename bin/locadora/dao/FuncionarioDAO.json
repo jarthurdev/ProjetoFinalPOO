@@ -1,0 +1,32 @@
+[
+    {
+        "usuario": "Admin",
+        "senha": "Admin",
+        "tipo": "Administrador"
+    },
+    {
+        "usuario": "Gerente",
+        "senha": "Gerente",
+        "tipo": "Gerente"
+    },
+    {
+        "usuario": "Atendente",
+        "senha": "Atendente",
+        "tipo": "Atendente"
+    },
+    {
+        "usuario": "Arthur",
+        "senha": "1234",
+        "tipo": "Administrador"
+    },
+    {
+        "usuario": "João",
+        "senha": "5678",
+        "tipo": "Gerente"
+    },
+    {
+        "usuario": "Brunno",
+        "senha": "6969",
+        "tipo": "Atendente"
+    }
+]
