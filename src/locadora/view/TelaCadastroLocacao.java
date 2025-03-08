@@ -39,7 +39,7 @@ public class TelaCadastroLocacao extends JDialog {
         clienteController = new ClienteController();
         locacaoController = new LocacaoController();
         locacaodao = new LocacaoDAO();
-
+        locacaodao.carregarDados(locacaoController);
         // Criação do painel
         JPanel panel = new JPanel();
         panel.setBounds(0, 0, 400, 600);

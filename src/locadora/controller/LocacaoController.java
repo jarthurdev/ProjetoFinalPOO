@@ -9,8 +9,8 @@ public class LocacaoController {
     private int id = 0;
 
     public void adicionarLocacao(Locacao locacao) {
-        this.listaLocacoes.add(locacao);
         locacao.setId(id);
+        listaLocacoes.add(locacao);
         id++;
     }
 
@@ -32,9 +32,11 @@ public class LocacaoController {
     }
 
     public void carregarListaLocacoes(ArrayList<Locacao> lista){
-
         this.listaLocacoes = lista;
 
+        if (!lista.isEmpty()) {
+            this.id = lista.stream().mapToInt(Locacao::getId).max().orElse(0) + 1;
+        }
     }
 
     public String toString(){

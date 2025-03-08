@@ -24,14 +24,14 @@
     "placa": "XYZ7777",
     "modelo": "sedan",
     "ano": 2015,
-    "status": true,
+    "status": false,
     "tipo": "Carro"
   },
   {
     "placa": "CBA7777",
     "modelo": "fiat fastback",
     "ano": 2015,
-    "status": true,
+    "status": false,
     "tipo": "Carro"
   },
   {
@@ -45,7 +45,7 @@
     "placa": "CAB7777",
     "modelo": "corolla",
     "ano": 2015,
-    "status": true,
+    "status": false,
     "tipo": "Carro"
   },
   {
@@ -59,7 +59,7 @@
     "placa": "QSA5678",
     "modelo": "BROS 160",
     "ano": 2022,
-    "status": false,
+    "status": true,
     "tipo": "Moto"
   },
   {

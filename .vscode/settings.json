@@ -4,10 +4,12 @@
     ],
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
-        "lib\\io-9.0.0.jar",
-        "lib\\gson-2.12.1.jar",
-        "lib\\layout-9.0.0.jar",
-        "lib\\kernel-9.0.0.jar"
+        "lib\\slf4j-api-2.0.17.jar",
+        "lib\\commons-9.0.0.jar",
+        "c:\\Users\\User\\Documents\\ProjetoFinalPOO\\ProjetoFinalPOO\\lib\\kernel-9.0.0.jar",
+        "c:\\Users\\User\\Documents\\ProjetoFinalPOO\\ProjetoFinalPOO\\lib\\io-9.0.0.jar",
+        "c:\\Users\\User\\Documents\\ProjetoFinalPOO\\ProjetoFinalPOO\\lib\\gson-2.12.1.jar",
+        "c:\\Users\\User\\Documents\\ProjetoFinalPOO\\ProjetoFinalPOO\\lib\\layout-9.0.0.jar"
     ],
     "java.debug.settings.onBuildFailureProceed": true
 }

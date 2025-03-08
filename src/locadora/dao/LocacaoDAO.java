@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+import locadora.controller.LocacaoController;
 import locadora.model.Locacao;
 import locadora.model.Veiculo;
 
@@ -24,9 +25,13 @@ public class LocacaoDAO {
     private final Gson gson;
 
     public LocacaoDAO(){
-        gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+        gson = new GsonBuilder()
+        .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
         .registerTypeAdapter(Period.class, new PeriodAdapter())
-        .setPrettyPrinting().create();
+        .registerTypeAdapter(Veiculo.class, new VeiculoAdapter()) // 🔥 Registra o adaptador personalizado
+        .setPrettyPrinting()
+        .create();
+
 
         verificarECriarArquivo();
     }
@@ -75,4 +80,9 @@ public class LocacaoDAO {
             return new ArrayList<Locacao>();
         }
     }    
+
+    public void carregarDados(LocacaoController controller) {
+        ArrayList<Locacao> lista = carregarLista();
+        controller.carregarListaLocacoes(lista);
+    }
 }
