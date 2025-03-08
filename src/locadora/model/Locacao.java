@@ -55,10 +55,11 @@ public class Locacao {
         this.cliente = cliente;
         this.dataLocacao = dataLocacao;
         this.dataDevolucao = dataDevolucao;
+        setValorLocacao(calcularCustoLocacao());
     }
     
     public int returnPeriodo(){
-        return Period.between(dataLocacao, dataDevolucao).getDays();
+        return Period.between(dataDevolucao, dataLocacao).getDays();
     }
     
     public int calcularCustoLocacao(){

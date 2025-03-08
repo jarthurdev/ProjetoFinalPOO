@@ -6,7 +6,7 @@ import locadora.model.Locacao;
 
 public class LocacaoController {
     private ArrayList<Locacao> listaLocacoes = new ArrayList<Locacao>();
-    private int id = 0;
+    private int id = 1;
 
     public void adicionarLocacao(Locacao locacao) {
         locacao.setId(id);

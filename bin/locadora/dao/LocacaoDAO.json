@@ -1,8 +1,8 @@
 [
   {
-    "dataLocacao": "2025-03-10",
-    "dataDevolucao": "2025-01-26",
-    "valorLocacao": 0,
+    "dataLocacao": "2025-03-11",
+    "dataDevolucao": "2025-03-08",
+    "valorLocacao": 240,
     "id": 0,
     "veiculo": {
       "placa": "ABC1234",
@@ -16,44 +16,6 @@
       "cpf": "123.321.231-02",
       "telefone": "1188888888",
       "email": "antao@gmail.com"
-    }
-  },
-  {
-    "dataLocacao": "2025-03-09",
-    "dataDevolucao": "2025-01-27",
-    "valorLocacao": 0,
-    "id": 1,
-    "veiculo": {
-      "placa": "XYZ7777",
-      "modelo": "sedan",
-      "ano": 2015,
-      "status": false,
-      "tipo": "Carro"
-    },
-    "cliente": {
-      "nome": "Jonas Madureira",
-      "cpf": "13287312780",
-      "telefone": "12-3812",
-      "email": "joao@"
-    }
-  },
-  {
-    "dataLocacao": "2025-03-08",
-    "dataDevolucao": "2025-02-28",
-    "valorLocacao": 0,
-    "id": 2,
-    "veiculo": {
-      "placa": "DEF4321",
-      "modelo": "Carga",
-      "ano": 2018,
-      "status": false,
-      "tipo": "Caminhao"
-    },
-    "cliente": {
-      "nome": "João Silva",
-      "cpf": "123.456.789-00",
-      "telefone": "1234-5678",
-      "email": "joao.silva@email.com"
     }
   }
 ]

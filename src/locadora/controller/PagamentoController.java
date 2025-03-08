@@ -2,7 +2,6 @@ package locadora.controller;
 
 import java.util.ArrayList;
 
-import locadora.model.Locacao;
 import locadora.model.Pagamento;
 
 public class PagamentoController {

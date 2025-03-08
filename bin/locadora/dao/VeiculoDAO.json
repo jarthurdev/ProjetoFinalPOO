@@ -10,49 +10,49 @@
     "placa": "XYZ5678",
     "modelo": "Esportiva",
     "ano": 2022,
-    "status": false,
+    "status": true,
     "tipo": "Moto"
   },
   {
     "placa": "DEF4321",
     "modelo": "Carga",
     "ano": 2018,
-    "status": false,
+    "status": true,
     "tipo": "Caminhao"
   },
   {
     "placa": "XYZ7777",
     "modelo": "sedan",
     "ano": 2015,
-    "status": false,
+    "status": true,
     "tipo": "Carro"
   },
   {
     "placa": "CBA7777",
     "modelo": "fiat fastback",
     "ano": 2015,
-    "status": false,
+    "status": true,
     "tipo": "Carro"
   },
   {
     "placa": "ABC7777",
     "modelo": "porsche",
     "ano": 2015,
-    "status": false,
+    "status": true,
     "tipo": "Carro"
   },
   {
     "placa": "CAB7777",
     "modelo": "corolla",
     "ano": 2015,
-    "status": false,
+    "status": true,
     "tipo": "Carro"
   },
   {
     "placa": "AVC5678",
     "modelo": "POP 110",
     "ano": 2022,
-    "status": false,
+    "status": true,
     "tipo": "Moto"
   },
   {
@@ -66,7 +66,7 @@
     "placa": "IOT5678",
     "modelo": "FAN 160",
     "ano": 2022,
-    "status": false,
+    "status": true,
     "tipo": "Moto"
   }
 ]
