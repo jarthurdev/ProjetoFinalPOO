@@ -16,6 +16,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import locadora.model.Locacao;
+import locadora.model.Veiculo;
 
 public class LocacaoDAO {
 

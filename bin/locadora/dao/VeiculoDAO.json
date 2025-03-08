@@ -10,7 +10,7 @@
     "placa": "XYZ5678",
     "modelo": "Esportiva",
     "ano": 2022,
-    "status": true,
+    "status": false,
     "tipo": "Moto"
   },
   {
@@ -21,28 +21,28 @@
     "tipo": "Caminhao"
   },
   {
-    "placa": "xyz7777",
+    "placa": "XYZ7777",
     "modelo": "sedan",
     "ano": 2015,
     "status": true,
     "tipo": "Carro"
   },
   {
-    "placa": "cba7777",
+    "placa": "CBA7777",
     "modelo": "fiat fastback",
     "ano": 2015,
     "status": true,
     "tipo": "Carro"
   },
   {
-    "placa": "abc7777",
+    "placa": "ABC7777",
     "modelo": "porsche",
     "ano": 2015,
-    "status": true,
+    "status": false,
     "tipo": "Carro"
   },
   {
-    "placa": "cab7777",
+    "placa": "CAB7777",
     "modelo": "corolla",
     "ano": 2015,
     "status": true,
@@ -52,21 +52,21 @@
     "placa": "AVC5678",
     "modelo": "POP 110",
     "ano": 2022,
-    "status": true,
+    "status": false,
     "tipo": "Moto"
   },
   {
     "placa": "QSA5678",
     "modelo": "BROS 160",
     "ano": 2022,
-    "status": true,
+    "status": false,
     "tipo": "Moto"
   },
   {
     "placa": "IOT5678",
     "modelo": "FAN 160",
     "ano": 2022,
-    "status": true,
+    "status": false,
     "tipo": "Moto"
   }
 ]
