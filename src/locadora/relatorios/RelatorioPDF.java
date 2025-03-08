@@ -11,6 +11,7 @@ import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.properties.UnitValue;
 
+import java.nio.file.*;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,15 +24,17 @@ public class  RelatorioPDF {
     // Método para gerar o relatório em formato de tabela
     public void gerarRelatorio(ArrayList<Pagamento> pagamentos) {
         // Gerar nome do arquivo baseado na data e hora
- 
-        String diretorio = System.getProperty("user.home") + "/Desktop/Relatórios";
+        
+        File desktop = new File(System.getProperty("user.dir"));
+        String diretorio = new File(desktop, "Relatórios").getAbsolutePath();
         File folder = new File(diretorio);
 
-        if (!folder.exists()) {
-            folder.mkdirs(); 
-        }
+    if (!folder.exists()) {
+        folder.mkdirs(); // Cria a pasta Relatórios se não existir
+    }
+
         dataHora = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date());
-        String arquivoPdf = diretorio + "Relatorio_Locacoes_" + dataHora + ".pdf"; // Nome do arquivo com data e hora
+        String arquivoPdf = diretorio + "/Relatorio_Locacoes_" + dataHora + ".pdf"; // Nome do arquivo com data e hora
         File file = new File(arquivoPdf);
 
         try {

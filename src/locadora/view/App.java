@@ -16,7 +16,7 @@ public class App {
         ArrayList<Pagamento> pagamentos = salvarPagamentoDAO.carregarLista();
     
         pagamentos.toString();
-
+        
         pdf.gerarRelatorio(pagamentos);
     /* 
         Scanner scanner = new Scanner(System.in);
