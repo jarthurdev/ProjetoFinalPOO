@@ -9,6 +9,8 @@ import locadora.dao.LocacaoDAO;
 import locadora.dao.VeiculoDAO;
 import locadora.model.Locacao;
 
+import java.util.ArrayList;
+
 public class TelaDevolucao extends JDialog {
 
     private JTextField campoId;
@@ -19,14 +21,9 @@ public class TelaDevolucao extends JDialog {
     private ClienteController clienteController;
     private LocacaoDAO locacaodao;
     private LocacaoController locacaoController;
+    private ArrayList<Locacao> locacoes;
 
-    public TelaDevolucao(JFrame parent) {
-        super(parent, "Locação", true);
-        setSize(400, 600);
-        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        setLocationRelativeTo(parent);
-        setLayout(null);
-        setResizable(false);
+    public void carregarDados(){
 
         veiculoController = new VeiculoController();
         veiculodao = new VeiculoDAO();
@@ -34,6 +31,23 @@ public class TelaDevolucao extends JDialog {
         locacaoController = new LocacaoController();
         locacaodao = new LocacaoDAO();
         locacaodao.carregarDados(locacaoController);
+    
+        locacoes = locacaoController.getListaLocacoes();
+    }
+
+
+
+
+    public TelaDevolucao(JFrame parent) {
+       
+        super(parent, "Locação", true);
+        carregarDados();
+        setSize(400, 600);
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(parent);
+        setLayout(null);
+        setResizable(false);
+
         
 
         // Criação do painel
@@ -77,11 +91,13 @@ public class TelaDevolucao extends JDialog {
         // Ação do botão Registrar
         botaoRegistrar.addActionListener(e -> {});
 
+        listarTodasLocacoes();
+
         // Tornando a tela visível
         setVisible(true);
 
-        locacaoController.setListaLocacoes(locacaodao.carregarLista());
-        listarTodasLocacoes(); // Lista todas as locações ao iniciar a tela
+     
+       // Lista todas as locações ao iniciar a tela
     }
 
     // Método para listar os veículos disponíveis (status == true)
