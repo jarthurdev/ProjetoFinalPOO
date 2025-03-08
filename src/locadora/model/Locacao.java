@@ -50,9 +50,11 @@ public class Locacao {
         this.cliente = cliente;
     }
     
-    public Locacao(Veiculo veiculo, Cliente cliente, Locacao locacao) {
+    public Locacao(Veiculo veiculo, Cliente cliente, LocalDate dataDevolucao) {
         this.veiculo = veiculo;
         this.cliente = cliente;
+        this.dataLocacao = LocalDate.now();
+        this.dataDevolucao = dataDevolucao;
     }
     
     public int returnPeriodo(){
