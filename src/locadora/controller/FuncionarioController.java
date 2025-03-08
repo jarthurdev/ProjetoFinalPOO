@@ -13,16 +13,19 @@ public class FuncionarioController {
     public void cadastrarAtendente(String usuario, String senha, String tipo) {
         Funcionario atendente = new Atendente(usuario, senha, tipo);
         // Código para salvar o atendente no banco de dados
+        funcionarios.add(atendente);
     }
 
     public void cadastrarGerente(String usuario, String senha, String tipo) {
         Funcionario gerente = new Gerente(usuario, senha, tipo);
         // Código para salvar o gerente no banco de dados
+        funcionarios.add(gerente);
     }
 
     public void cadastrarAdministrador(String usuario, String senha, String tipo) {
         Funcionario administrador = new Administrador(usuario, senha, tipo);
         // Código para salvar o administrador no banco de dados
+        funcionarios.add(administrador);
     }
 
     public String buscarFuncionario(String usuario, String senha) {
