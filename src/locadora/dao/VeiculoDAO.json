@@ -3,14 +3,14 @@
     "placa": "ABC1234",
     "modelo": "Sedan",
     "ano": 2020,
-    "status": true,
+    "status": false,
     "tipo": "Carro"
   },
   {
     "placa": "XYZ5678",
     "modelo": "Esportiva",
     "ano": 2022,
-    "status": true,
+    "status": false,
     "tipo": "Moto"
   },
   {
@@ -24,7 +24,7 @@
     "placa": "xyz7777",
     "modelo": "sedan",
     "ano": 2015,
-    "status": true,
+    "status": false,
     "tipo": "Carro"
   }
 ]

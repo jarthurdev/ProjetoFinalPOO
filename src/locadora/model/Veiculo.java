@@ -42,13 +42,17 @@ public abstract class Veiculo {
         String placa = jsonObject.get("placa").getAsString();
         String modelo = jsonObject.get("modelo").getAsString();
         int ano = jsonObject.get("ano").getAsInt();
-
-        return switch (tipo) {
+        boolean status = jsonObject.get("status").getAsBoolean(); // 🔴 PEGANDO O STATUS DO JSON
+    
+        Veiculo veiculo = switch (tipo) {
             case "Carro" -> new Carro(placa, modelo, ano);
             case "Moto" -> new Moto(placa, modelo, ano);
             case "Caminhao" -> new Caminhao(placa, modelo, ano);
             default -> throw new IllegalArgumentException("Tipo de veículo desconhecido: " + tipo);
         };
+    
+        veiculo.setStatus(status); // 🔴 GARANTE QUE O STATUS SEJA SETADO CORRETAMENTE
+        return veiculo;
     }
 
     public String toString() {

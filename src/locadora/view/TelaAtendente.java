@@ -45,7 +45,7 @@ public final class TelaAtendente extends JFrame{
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
         panel.add(button);
 
-        button.addActionListener(l -> new TelaAluguel(this));
+        button.addActionListener(l -> new TelaCadastroLocacao(this));
     }
 
     public void registrarDevolucao(JPanel panel){

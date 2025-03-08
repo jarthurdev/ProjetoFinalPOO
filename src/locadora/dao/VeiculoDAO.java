@@ -51,28 +51,28 @@ public class VeiculoDAO {
         }
     }
 
-    public ArrayList<Veiculo> carregarLista() {
-        try (Reader reader = new FileReader(arquivo)) {
-            JsonArray jsonArray = JsonParser.parseReader(reader).getAsJsonArray();
+        public ArrayList<Veiculo> carregarLista() {
+            try (Reader reader = new FileReader(arquivo)) {
+                JsonArray jsonArray = JsonParser.parseReader(reader).getAsJsonArray();
+                
+                ArrayList<Veiculo> lista = new ArrayList<>();
+        
+                for (JsonElement element : jsonArray) {
+                    Veiculo veiculo = Veiculo.fromJson(element.getAsJsonObject());
+                    lista.add(veiculo);
+                } 
+                System.out.println("Lista de veículos carregada com sucesso.");
+                return lista;
             
-            ArrayList<Veiculo> lista = new ArrayList<>();
-    
-            for (JsonElement element : jsonArray) {
-                Veiculo veiculo = Veiculo.fromJson(element.getAsJsonObject());
-                lista.add(veiculo);
-            } 
-            System.out.println("Lista de veículos carregada com sucesso.");
-            return lista;
-           
-        } catch (IOException e) {
-            System.err.println("Erro ao carregar o arquivo: " + e.getMessage());
-            e.printStackTrace();
-            return new ArrayList<>();
-        } catch (JsonSyntaxException e) {
-            System.err.println("Erro de sintaxe JSON ao carregar o arquivo.");
-            e.printStackTrace();
-            return new ArrayList<>();
-        }
-    }    
+            } catch (IOException e) {
+                System.err.println("Erro ao carregar o arquivo: " + e.getMessage());
+                e.printStackTrace();
+                return new ArrayList<>();
+            } catch (JsonSyntaxException e) {
+                System.err.println("Erro de sintaxe JSON ao carregar o arquivo.");
+                e.printStackTrace();
+                return new ArrayList<>();
+            }
+        }    
 }
 
