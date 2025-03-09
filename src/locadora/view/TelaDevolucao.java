@@ -7,12 +7,15 @@ import java.time.temporal.ChronoUnit;
 import javax.swing.*;
 import locadora.controller.ClienteController;
 import locadora.controller.LocacaoController;
+import locadora.controller.PagamentoController;
 import locadora.controller.VeiculoController;
 import locadora.dao.LocacaoDAO;
+import locadora.dao.PagamentoDAO;
 import locadora.dao.VeiculoDAO;
 import locadora.model.Carro;
 import locadora.model.Locacao;
 import locadora.model.Moto;
+import locadora.model.Pagamento;
 
 public class TelaDevolucao extends JDialog {
 
@@ -24,6 +27,9 @@ public class TelaDevolucao extends JDialog {
     private ClienteController clienteController;
     private LocacaoDAO locacaodao;
     private LocacaoController locacaoController;
+    private PagamentoController pagamentoController;
+    private Pagamento pagamento;
+    private PagamentoDAO pagamentodao;
 
     public void carregarDados() {
         veiculoController = new VeiculoController();
@@ -32,6 +38,10 @@ public class TelaDevolucao extends JDialog {
         locacaoController = new LocacaoController();
         locacaodao = new LocacaoDAO();
         locacaoController.setListaLocacoes(locacaodao.carregarLista());
+        pagamentoController = new PagamentoController();
+        pagamentodao = new PagamentoDAO();
+        pagamentoController.setListaLocacoes(pagamentodao.carregarLista());
+        
     }
 
     public TelaDevolucao(JFrame parent) {
@@ -113,12 +123,13 @@ public class TelaDevolucao extends JDialog {
             if (locacao != null) {
                 LocalDate dataPrevista = locacao.getDataDevolucao();
                 LocalDate dataRealDevolucao = LocalDate.parse(dataDevolucaoTexto, DateTimeFormatter.ISO_DATE);
+                Pagamento pagamento = new Pagamento(locacao.getValorLocacao(), "Dinheiro", dataRealDevolucao ,locacao);
+                pagamentoController.addPagamento(pagamento);
 
+                double valorFinal = pagamento.calcularPagamento();
                 long diferencaDias = ChronoUnit.DAYS.between(dataPrevista, dataRealDevolucao);
-                double valorFinal = locacao.getValorLocacao();
 
                 if (diferencaDias > 0) {
-                    valorFinal = aplicarMulta(locacao, valorFinal);
                     JOptionPane.showMessageDialog(this, 
                         "Devolução atrasada em " + diferencaDias + " dias!\n" +
                         "Valor atualizado com multa: R$ " + String.format("%.2f", valorFinal),
@@ -139,20 +150,12 @@ public class TelaDevolucao extends JDialog {
                 JOptionPane.showMessageDialog(this, "Nenhuma locação encontrada com esse ID.", "Erro", JOptionPane.ERROR_MESSAGE);
             }
 
+            pagamentodao.salvarLista(pagamentoController.getListaLocacoes());
+
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "ID inválido! Insira um número.", "Erro", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Formato de data inválido! Use YYYY-MM-DD.", "Erro", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-    private double aplicarMulta(Locacao locacao, double valor) {
-        if (locacao.getVeiculo() instanceof Carro) {
-            return valor * 1.1; // 10% multa para carros
-        } else if (locacao.getVeiculo() instanceof Moto) {
-            return valor * 1.05; // 5% multa para motos
-        } else {
-            return valor * 1.2; // 20% multa para outros veículos
         }
     }
 }

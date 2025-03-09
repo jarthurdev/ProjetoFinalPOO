@@ -1,15 +1,19 @@
 package locadora.controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
+import locadora.model.Locacao;
 import locadora.model.Pagamento;
 
 public class PagamentoController {
 
     ArrayList<Pagamento> pagamentos = new ArrayList<Pagamento>();
+    private int id = 1;
 
-    public void addPagamento(double valor, int id, String metodo){
-        Pagamento pagamento = new Pagamento(valor, id, metodo);
+    public void addPagamento(Pagamento pagamento){
+        pagamento.setId(id);
+        id++;
         pagamentos.add(pagamento);
     }
 
@@ -34,4 +38,14 @@ public class PagamentoController {
         return str;
     }
 
+    public void setListaLocacoes(ArrayList<Pagamento> listaPagamentos){
+        if (!listaPagamentos.isEmpty()) {
+            this.id = listaPagamentos.stream().mapToInt(Pagamento::getId).max().orElse(0) + 1;
+        }
+        this.pagamentos = listaPagamentos;
+    }
+
+    public ArrayList<Pagamento> getListaLocacoes(){
+        return this.pagamentos;
+    }
 }

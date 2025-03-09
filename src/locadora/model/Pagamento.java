@@ -12,11 +12,11 @@ public class Pagamento {
     protected Locacao locacao;
     
 
-    public Pagamento(double valor, int id, String metodo){
+    public Pagamento(double valor, String metodo, LocalDate dataPagamento,Locacao locacao) {
         this.valor = valor;
-        this.id = id;
         this.metodo = metodo;
-        this.dataPagamento = LocalDate.now();
+        this.dataPagamento = dataPagamento;
+        this.locacao = locacao;
     }
 
     public Locacao getLocacao() {
@@ -27,14 +27,16 @@ public class Pagamento {
         this.locacao = locacao;
     }
 
-
-
     public double getValor() {
         return valor;
     }
     
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     public LocalDate getDataPagamento() {
