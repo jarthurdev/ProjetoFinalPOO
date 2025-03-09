@@ -74,7 +74,7 @@ public class RelatorioVeiculosPDF {
                 table.addCell(v.getPlaca()).setFontSize(10); // Modelo do Carro
                 table.addCell(String.format("%d", v.getAno())); // Placa do Carro
                 table.addCell(String.format("%d", v.calcularCustoLocacao())); // Data da Locação
-                table.addCell((v.isStatus() ? "Locado" : "Disponível")); // Valor da Locação
+                table.addCell((v.isStatus() ? "Disponível" : "Locado")); // Valor da Locação
             }
 
             // Adicionar a tabela ao documento

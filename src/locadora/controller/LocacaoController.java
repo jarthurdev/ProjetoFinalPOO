@@ -32,8 +32,6 @@ public class LocacaoController {
         return null;
     }
 
-  
-
     public ArrayList<Locacao> getListaLocacoes(){
         return this.listaLocacoes;
     }
