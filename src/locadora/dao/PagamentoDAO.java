@@ -14,6 +14,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import locadora.dao.LocalDateAdapter;
 import locadora.model.Pagamento;
+import locadora.model.Veiculo;
 
 public class PagamentoDAO implements Persistencia<Pagamento> {
 
@@ -21,8 +22,12 @@ private final String arquivo = "src/locadora/json/PagamentoDAO.json";
     private final Gson gson;
 
     public PagamentoDAO(){
-        gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).setPrettyPrinting()
-        .create();
+        gson = new GsonBuilder()
+                .registerTypeAdapter(Pagamento.class, new PagamentoAdapter())
+                .registerTypeAdapter(Veiculo.class, new VeiculoAdapter())
+                .registerTypeAdapter(LocalDate.class, new LocalDateAdapter()) // Para lidar com LocalDate
+                .setPrettyPrinting()
+                 .create();
 
         verificarECriarArquivo();
     }
@@ -53,24 +58,23 @@ private final String arquivo = "src/locadora/json/PagamentoDAO.json";
     }
 
     public ArrayList<Pagamento> carregarLista() {
-        try (Reader reader = new FileReader(arquivo)) {
-
-            Type tipoLista = new TypeToken<ArrayList<Pagamento>>(){}.getType();
+        try (Reader reader = new FileReader(this.arquivo)) {
+            Type tipoLista = new TypeToken<ArrayList<Pagamento>>() {}.getType();
             ArrayList<Pagamento> lista = gson.fromJson(reader, tipoLista);
-            
-            if (lista.isEmpty() || lista == null){
-                System.out.println("Lista Vazia, criando nova lista");
-                return new ArrayList<Pagamento>();
+    
+            if (lista == null || lista.isEmpty()) {
+                System.out.println("Lista vazia, criando nova lista.");
+                return new ArrayList<>();
             }
-
+    
             System.out.println("Lista de pagamentos carregada com sucesso.");
             return lista;
         } catch (IOException e) {
             System.err.println("Erro ao carregar o arquivo: " + e.getMessage());
             e.printStackTrace();
-            return new ArrayList<Pagamento>();
+            return new ArrayList<>();
         }
-    }    
+    }
 }
 
 

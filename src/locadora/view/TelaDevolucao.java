@@ -20,19 +20,12 @@ public class TelaDevolucao extends JDialog {
     private JTextField campoId;
     private JTextField campoDatadeDevolucao;
     private JTextArea areaLocacao;
-    private VeiculoController veiculoController;
-    private VeiculoDAO veiculodao;
-    private ClienteController clienteController;
     private LocacaoDAO locacaodao;
     private LocacaoController locacaoController;
     private PagamentoController pagamentoController;
-    private Pagamento pagamento;
     private PagamentoDAO pagamentodao;
 
     public void carregarDados() {
-        veiculoController = new VeiculoController();
-        veiculodao = new VeiculoDAO();
-        clienteController = new ClienteController();
         locacaoController = new LocacaoController();
         locacaodao = new LocacaoDAO();
         locacaoController.setListaLocacoes(locacaodao.carregarLista());
@@ -181,6 +174,9 @@ public class TelaDevolucao extends JDialog {
 
             // Salva a lista de pagamentos atualizada
             pagamentodao.salvarLista(pagamentoController.getListaLocacoes());
+            locacao.getVeiculo().setStatus(true);
+            locacaoController.removerLocacao(locacao);
+            locacaodao.salvarLista(locacaoController.getListaLocacoes());
 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "ID inválido! Insira um número.", "Erro", JOptionPane.ERROR_MESSAGE);
