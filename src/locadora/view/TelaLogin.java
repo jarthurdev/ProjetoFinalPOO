@@ -2,7 +2,6 @@ package locadora.view;
 
 import java.awt.*;
 import javax.swing.*;
-
 import locadora.controller.FuncionarioController;
 import locadora.dao.FuncionarioDAO;
 
@@ -57,7 +56,7 @@ public class TelaLogin extends JFrame{
         labelSenha.setForeground(Color.WHITE);
         labelSenha.setFont(new Font("Arial", Font.BOLD, 14));
 
-        JTextField senha = new JTextField("");
+        JPasswordField senha = new JPasswordField("");
         senha.setBounds(100, 150, 200, 25);
         senha.setBackground(new Color(240,240,240));
         senha.setFont(new Font("Arial", Font.BOLD, 20));

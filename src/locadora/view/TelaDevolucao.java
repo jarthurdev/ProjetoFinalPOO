@@ -5,13 +5,10 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import javax.swing.*;
-import locadora.controller.ClienteController;
 import locadora.controller.LocacaoController;
 import locadora.controller.PagamentoController;
-import locadora.controller.VeiculoController;
 import locadora.dao.LocacaoDAO;
 import locadora.dao.PagamentoDAO;
-import locadora.dao.VeiculoDAO;
 import locadora.model.Locacao;
 import locadora.model.Pagamento;
 
@@ -143,6 +140,7 @@ public class TelaDevolucao extends JDialog {
                 if (tipoPagamento != null) {
                     // Cria o pagamento com o tipo escolhido
                     Pagamento pagamento = new Pagamento(locacao.getValorLocacao(), tipoPagamento, dataRealDevolucao, locacao);
+                    pagamento.setId(pagamentoController.getId());
                     pagamentoController.addPagamento(pagamento);
 
                     double valorFinal = pagamento.calcularPagamento();
@@ -177,6 +175,7 @@ public class TelaDevolucao extends JDialog {
             locacao.getVeiculo().setStatus(true);
             locacaoController.removerLocacao(locacao);
             locacaodao.salvarLista(locacaoController.getListaLocacoes());
+            listarTodasLocacoes();
 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "ID inválido! Insira um número.", "Erro", JOptionPane.ERROR_MESSAGE);

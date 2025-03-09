@@ -48,4 +48,8 @@ public class PagamentoController {
     public ArrayList<Pagamento> getListaLocacoes(){
         return this.pagamentos;
     }
+
+    public int getId() {
+        return id;
+    }
 }

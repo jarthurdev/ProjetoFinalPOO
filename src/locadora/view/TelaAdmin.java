@@ -32,6 +32,8 @@ public final class TelaAdmin extends JFrame{
         label.setForeground(Color.WHITE);
         label.setFont(new Font("Arial", Font.BOLD, 20));
         panel.add(label);
+
+
     }
 
     public void cadastrarAdmin(JPanel panel){
@@ -43,6 +45,11 @@ public final class TelaAdmin extends JFrame{
         button.setFont(new Font("Arial", Font.BOLD, 16));
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
         panel.add(button);
+
+        button.addActionListener(e -> {
+            new TelaCadastroAdministrador(this);
+            dispose();
+        });
     }
 
     public void cadastrarGerente(JPanel panel){
@@ -55,6 +62,11 @@ public final class TelaAdmin extends JFrame{
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
         panel.add(button);
 
+        button.addActionListener(e -> {
+            new TelaCadastroGerente(this);
+            dispose();
+        });
+
     }
 
     public void cadastrarAtendente(JPanel panel){
@@ -66,6 +78,11 @@ public final class TelaAdmin extends JFrame{
         button.setFont(new Font("Arial", Font.BOLD, 16));
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
         panel.add(button);
+
+        button.addActionListener(e -> {
+            new TelaCadastroAtendente(this);
+            dispose();
+        });
     }
 
      public static void main(String[] args) {

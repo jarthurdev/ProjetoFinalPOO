@@ -49,4 +49,8 @@ public class FuncionarioController {
         }
         return false;
     }
+
+    public ArrayList<Funcionario> getFuncionarios() {
+        return funcionarios;
+    }
 }
