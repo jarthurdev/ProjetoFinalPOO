@@ -105,6 +105,7 @@ public class TelaCadastroCliente extends JDialog {
         Cliente cliente = new Cliente(nome, cpf, telefone, email);
         clienteController.cadastrarCliente(cliente);
         JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+        clientedao.salvarLista(clienteController.getListaClientes());
         atualizarListaClientes();
     }
 
@@ -114,6 +115,7 @@ public class TelaCadastroCliente extends JDialog {
             boolean removido = clienteController.removerCliente(nome);
             if (removido) {
                 JOptionPane.showMessageDialog(this, "Cliente removido com sucesso!");
+                clientedao.salvarLista(clienteController.getListaClientes());
                 atualizarListaClientes();
             } else {
                 JOptionPane.showMessageDialog(this, "Cliente não encontrado!", "Erro", JOptionPane.ERROR_MESSAGE);
