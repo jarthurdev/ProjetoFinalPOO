@@ -1,8 +1,6 @@
 package locadora.controller;
 
-import com.google.gson.*;
 import locadora.model.Cliente;
-import java.io.*;
 import java.util.ArrayList;
 
 public class ClienteController {

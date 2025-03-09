@@ -17,9 +17,9 @@ import com.google.gson.JsonSyntaxException;
 
 import locadora.model.Veiculo;
 
-public class VeiculoDAO {
+public class VeiculoDAO implements Persistencia<Veiculo>{
     private final Gson gson;
-    private final String arquivo = "src/locadora/dao/VeiculoDAO.json";
+    private final String arquivo = "src/locadora/json/VeiculoDAO.json";
 
     public VeiculoDAO() {
         this.gson = new GsonBuilder().setPrettyPrinting().create();
@@ -27,7 +27,7 @@ public class VeiculoDAO {
         verificarECriarArquivo();
     }
 
-    private void verificarECriarArquivo() {
+    public void verificarECriarArquivo() {
         File file = new File(arquivo);
         try {
             if (!file.exists()) {

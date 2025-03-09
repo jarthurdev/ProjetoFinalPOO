@@ -39,12 +39,10 @@ public class LocacaoController {
     }
 
     public void setListaLocacoes(ArrayList<Locacao> listaLocacoes){
-
         if (!listaLocacoes.isEmpty()) {
             this.id = listaLocacoes.stream().mapToInt(Locacao::getId).max().orElse(0) + 1;
         }
         this.listaLocacoes = listaLocacoes;
-
     }
 
     public String toString(){

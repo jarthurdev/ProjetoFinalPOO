@@ -126,7 +126,7 @@ public class TelaCadastroVeiculo extends JDialog {
         }
 
         veiculoController.cadastrarVeiculo(veiculo);
-        veiculodao.salvarLista(veiculoController.retornarListaVeiculos()); // Salva a lista após cadastrar
+        veiculodao.salvarLista(veiculoController.getListaVeiculos()); // Salva a lista após cadastrar
         JOptionPane.showMessageDialog(this, "Veículo cadastrado com sucesso!");
         listarVeiculos(); // Atualiza a lista após cadastrar
     }
@@ -139,7 +139,7 @@ public class TelaCadastroVeiculo extends JDialog {
 
             if (veiculoRemovido != null) {
                 veiculoController.removerVeiculo(veiculoRemovido);
-                veiculodao.salvarLista(veiculoController.retornarListaVeiculos()); // Salva a lista após remover
+                veiculodao.salvarLista(veiculoController.getListaVeiculos()); // Salva a lista após remover
                 listarVeiculos(); // Atualiza a lista de veículos
                 JOptionPane.showMessageDialog(this, "Veículo removido com sucesso!");
             } else {
@@ -152,7 +152,7 @@ public class TelaCadastroVeiculo extends JDialog {
 
     private void listarVeiculos() {
         areaVeiculos.setText(""); // Limpa a área de texto antes de listar
-        for (Veiculo veiculo : veiculoController.listarVeiculos()) {
+        for (Veiculo veiculo : veiculoController.getListaVeiculos()) {
             areaVeiculos.append(veiculo.toString() + "\n"); // Adiciona cada veículo à área de texto
         }
     }

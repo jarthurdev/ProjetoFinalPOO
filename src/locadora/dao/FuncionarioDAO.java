@@ -17,9 +17,9 @@ import com.google.gson.JsonSyntaxException;
 
 import locadora.model.Funcionario;
 
-public class FuncionarioDAO {
+public class FuncionarioDAO implements Persistencia<Funcionario>{
     private final Gson gson;
-    private final String arquivo = "src/locadora/dao/FuncionarioDAO.json";
+    private final String arquivo = "src/locadora/json/FuncionarioDAO.json";
 
     public FuncionarioDAO() {
         this.gson = new GsonBuilder().setPrettyPrinting().create();
@@ -27,7 +27,7 @@ public class FuncionarioDAO {
         verificarECriarArquivo();
     }
 
-    private void verificarECriarArquivo() {
+    public void verificarECriarArquivo() {
         File file = new File(arquivo);
         try {
             if (!file.exists()) {

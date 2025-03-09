@@ -15,9 +15,9 @@ import com.google.gson.reflect.TypeToken;
 import locadora.dao.LocalDateAdapter;
 import locadora.model.Pagamento;
 
-public class PagamentoDAO {
+public class PagamentoDAO implements Persistencia<Pagamento> {
 
-private final String arquivo = "src/locadora/dao/PagamentoDAO.json";
+private final String arquivo = "src/locadora/json/PagamentoDAO.json";
     private final Gson gson;
 
     public PagamentoDAO(){
@@ -27,7 +27,7 @@ private final String arquivo = "src/locadora/dao/PagamentoDAO.json";
         verificarECriarArquivo();
     }
 
-    private void verificarECriarArquivo() {
+    public void verificarECriarArquivo() {
         File file = new File(arquivo);
         try {
             if (!file.exists()) {

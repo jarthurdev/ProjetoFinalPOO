@@ -1,8 +1,6 @@
 package locadora.relatorios;
-import locadora.model.Pagamento;
+import locadora.model.Locacao;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
@@ -11,25 +9,26 @@ import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.properties.UnitValue;
 
-import java.security.ProtectionDomain;
-import java.nio.file.*;
+/*import java.security.ProtectionDomain;
+import java.nio.file.*;*/
 import java.io.File;
 import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class  RelatorioPDF {
+public class  RelatorioLocacaoPDF {
 
     String diretorio;
     String dataHora;
+    double valorTotal;
 
     // Método para gerar o relatório em formato de tabela
-    public void gerarRelatorio(ArrayList<Pagamento> pagamentos) {
+    public void gerarRelatorio(ArrayList<Locacao> locacoes) {
 
         try{
         // Gerar nome do arquivo baseado na data e hora
-        diretorio = new File(RelatorioPDF.class.getProtectionDomain().getCodeSource().getLocation().toURI()).getPath();
+        diretorio = new File(RelatorioLocacaoPDF.class.getProtectionDomain().getCodeSource().getLocation().toURI()).getPath();
         diretorio = diretorio.substring(0, diretorio.lastIndexOf(File.separator));  // Remove o nome do JAR do caminho
         diretorio += "/Relatórios/";
         
@@ -56,27 +55,38 @@ public class  RelatorioPDF {
             Document document = new Document(pdfDocument);
 
             // Título do relatório
-            document.add(new Paragraph("Relatório de Locações de Veículos").setFontSize(16));
+            document.add(new Paragraph("Relatório de Locações").setFontSize(16));
 
             // Criando a tabela com 5 colunas
-            Table table = new Table(UnitValue.createPercentArray(5)).useAllAvailableWidth();
+            Table table = new Table(UnitValue.createPercentArray(6)).useAllAvailableWidth();
 
             // Cabeçalho da tabela
+            table.addCell(new Cell().add(new Paragraph("ID da locação")));
             table.addCell(new Cell().add(new Paragraph("Nome")));
-            table.addCell(new Cell().add(new Paragraph("Modelo de Carro")));
-            table.addCell(new Cell().add(new Paragraph("Placa")));
+            table.addCell(new Cell().add(new Paragraph("CPF")));
             table.addCell(new Cell().add(new Paragraph("Data de Locação")));
+            table.addCell(new Cell().add(new Paragraph("Data de Devolução")));
             table.addCell(new Cell().add(new Paragraph("Valor")));
-
             // Adicionar os dados das locações
-            for (Pagamento p : pagamentos) {
+            for (Locacao l : locacoes) {
                 // Adicionar uma linha para cada locação
-                table.addCell(p.getLocacao().getCliente().getNome()); // Nome do Cliente
-                table.addCell(p.getLocacao().getVeiculo().getModelo()); // Modelo do Carro
-                table.addCell(p.getLocacao().getVeiculo().getPlaca()); // Placa do Carro
-                table.addCell(p.getLocacao().getDataLocacao().toString()); // Data da Locação
-                table.addCell(String.format("R$ %.2f", p.getValor())); // Valor da Locação
+                valorTotal += l.getValorLocacao();
+
+                table.addCell(String.format("%d", l.getId())); // ID
+                table.addCell(l.getCliente().getNome()); // Nome do Cliente
+                table.addCell(l.getCliente().getCpf()).setFontSize(10); //CPF do Cliente
+                table.addCell(l.getDataLocacao().toString()); // Data de locação
+                table.addCell(l.getDataDevolucao().toString()); // Data de Devolução
+                table.addCell(String.format("R$ %d", l.getValorLocacao())); // Valor da Locação
             }
+
+            table.addCell("---"); 
+            table.addCell("---"); 
+            table.addCell("---"); 
+            table.addCell("---");
+            table.addCell("---");
+            table.addCell(String.format("Total: %.2f", valorTotal)); // Valor Total
+
 
             // Adicionar a tabela ao documento
             document.add(table);

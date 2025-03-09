@@ -37,6 +37,14 @@ public class Pagamento {
         return id;
     }
     
+    public LocalDate getDataPagamento() {
+        return dataPagamento;
+    }
+
+    public void setDataPagamento(LocalDate dataPagamento) {
+        this.dataPagamento = dataPagamento;
+    }
+
     public String getMetodo() {
         return metodo;
     }

@@ -18,7 +18,7 @@ public class VeiculoController {
     }
 
     // Método para listar todos os veículos
-    public ArrayList<Veiculo> listarVeiculos() {
+    public ArrayList<Veiculo> getListaVeiculos() {
         return this.listaVeiculos;
     }
 
@@ -69,8 +69,5 @@ public class VeiculoController {
         this.listaVeiculos = lista;
     }
 
-    // Método para retornar a lista de veículos
-    public ArrayList<Veiculo> retornarListaVeiculos() {
-        return this.listaVeiculos;
-    }
+ 
 }

@@ -6,7 +6,7 @@ import java.time.Period;
 public class Locacao {
     private LocalDate dataLocacao;
     private LocalDate dataDevolucao;
-    private int valorLocacao;
+    private double valorLocacao;
     private int id;
     
     protected Veiculo veiculo;
@@ -24,10 +24,10 @@ public class Locacao {
     public void setDataDevolucao(LocalDate dataDevolucao) {
         this.dataDevolucao = dataDevolucao;
     }
-    public int getValorLocacao() {
+    public double getValorLocacao() {
         return valorLocacao;
     }
-    public void setValorLocacao(int valorLocacao) {
+    public void setValorLocacao(double valorLocacao) {
         this.valorLocacao = valorLocacao;
     }
     public int getId() {

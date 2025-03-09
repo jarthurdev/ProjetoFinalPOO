@@ -15,13 +15,13 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import locadora.controller.LocacaoController;
+
 import locadora.model.Locacao;
 import locadora.model.Veiculo;
 
-public class LocacaoDAO {
+public class LocacaoDAO implements Persistencia<Locacao> {
 
-    private final String arquivo = "src/locadora/dao/LocacaoDAO.json";
+    private final String arquivo = "src/locadora/json/LocacaoDAO.json";
     private final Gson gson;
 
     public LocacaoDAO(){
@@ -36,7 +36,7 @@ public class LocacaoDAO {
         verificarECriarArquivo();
     }
 
-    private void verificarECriarArquivo() {
+    public void verificarECriarArquivo() {
         File file = new File(arquivo);
         try {
             if (!file.exists()) {

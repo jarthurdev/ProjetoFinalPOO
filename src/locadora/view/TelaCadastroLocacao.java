@@ -139,7 +139,7 @@ public class TelaCadastroLocacao extends JDialog {
 
             if (veiculo != null && cliente != null) {
                 veiculoController.alterarStatusVeiculoPorPlaca(placa); // Altera o status para false
-                veiculodao.salvarLista(veiculoController.retornarListaVeiculos()); // Salva a lista alterada
+                veiculodao.salvarLista(veiculoController.getListaVeiculos()); // Salva a lista alterada
                 listarVeiculosDisponiveis(); // Atualiza a lista na interface
                 JOptionPane.showMessageDialog(this, "Veículo registrado com sucesso!");
 

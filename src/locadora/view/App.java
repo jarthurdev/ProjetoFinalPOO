@@ -1,23 +1,61 @@
 package locadora.view;
 
-import java.util.ArrayList;
 import locadora.dao.*;
 import locadora.model.*;
-import locadora.relatorios.RelatorioPDF;
+import locadora.relatorios.*;
+
+import java.util.ArrayList;
+
 import locadora.controller.*;
+
+/* 
+import locadora.model.*;
+import java.util.ArrayList;
 import java.util.Scanner;
+*/
 
 public class App {
     public static void main(String[] args) {
 
-        RelatorioPDF pdf = new RelatorioPDF();
-        PagamentoDAO salvarPagamentoDAO = new PagamentoDAO();
+        RelatorioVeiculosPDF pdf1 = new RelatorioVeiculosPDF();
+        VeiculoController veiculos = new VeiculoController();
+        VeiculoDAO veiculoDAO = new VeiculoDAO();
 
-        ArrayList<Pagamento> pagamentos = salvarPagamentoDAO.carregarLista();
-    
-        pagamentos.toString();
+        veiculos.setListaVeiculos(veiculoDAO.carregarLista());
+
+        pdf1.gerarRelatorio(veiculos.getListaVeiculos());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /* 
+        PagamentoDAO pagamentoDAO = new PagamentoDAO();
+        RelatorioLocacaoPDF pdf = new RelatorioLocacaoPDF();
+        LocacaoDAO locacaoDAO = new LocacaoDAO();
+        LocacaoController locacaoController = new LocacaoController();
+        RelatorioPagamentosPDF pdf2 = new RelatorioPagamentosPDF();
+        ArrayList<Pagamento> pagamentos = pagamentoDAO.carregarLista();
+
+        locacaoController.setListaLocacoes(locacaoDAO.carregarLista());
+
+        locacaoController.toString();
         
-        pdf.gerarRelatorio(pagamentos);
+        pdf2.gerarRelatorio(pagamentos);
+        */
+        //pdf.gerarRelatorio(locacaoController.getlistaLocacoes());
+        
     /* 
         Scanner scanner = new Scanner(System.in);
 

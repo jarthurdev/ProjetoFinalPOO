@@ -12,10 +12,10 @@ import java.io.Writer;
 import java.util.ArrayList;
 import com.google.gson.reflect.TypeToken;
 
-public class ClienteDAO {
+public class ClienteDAO implements Persistencia<Cliente>{
 
 
-    private final String arquivo = "src/locadora/dao/ClienteDAO.json";
+    private final String arquivo = "src/locadora/json/ClienteDAO.json";
     private final Gson gson;
 
     public ClienteDAO(){
@@ -23,7 +23,7 @@ public class ClienteDAO {
         verificarECriarArquivo();
     }
 
-    private void verificarECriarArquivo() {
+    public void verificarECriarArquivo() {
         File file = new File(arquivo);
         try {
             if (!file.exists()) {
