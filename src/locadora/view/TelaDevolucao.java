@@ -12,9 +12,7 @@ import locadora.controller.VeiculoController;
 import locadora.dao.LocacaoDAO;
 import locadora.dao.PagamentoDAO;
 import locadora.dao.VeiculoDAO;
-import locadora.model.Carro;
 import locadora.model.Locacao;
-import locadora.model.Moto;
 import locadora.model.Pagamento;
 
 public class TelaDevolucao extends JDialog {
@@ -41,7 +39,6 @@ public class TelaDevolucao extends JDialog {
         pagamentoController = new PagamentoController();
         pagamentodao = new PagamentoDAO();
         pagamentoController.setListaLocacoes(pagamentodao.carregarLista());
-        
     }
 
     public TelaDevolucao(JFrame parent) {
@@ -107,6 +104,29 @@ public class TelaDevolucao extends JDialog {
         return null;
     }
 
+    private String selecionarTipoPagamento() {
+        String[] opcoes = {"Pix", "Débito", "Crédito", "Dinheiro"};
+
+        // Cria o JOptionPane com as opções fornecidas
+        int escolha = JOptionPane.showOptionDialog(
+            this,
+            "Escolha o tipo de pagamento",
+            "Selecionar Tipo de Pagamento",
+            JOptionPane.DEFAULT_OPTION,
+            JOptionPane.INFORMATION_MESSAGE,
+            null,
+            opcoes,
+            opcoes[0] // Valor padrão, ou seja, a primeira opção (Pix)
+        );
+
+        // Retorna a opção escolhida
+        if (escolha >= 0) {
+            return opcoes[escolha];
+        } else {
+            return null; // Se o usuário fechar o diálogo sem escolher
+        }
+    }
+
     private void registrarDevolucao() {
         String idTexto = campoId.getText().trim();
         String dataDevolucaoTexto = campoDatadeDevolucao.getText().trim();
@@ -123,33 +143,43 @@ public class TelaDevolucao extends JDialog {
             if (locacao != null) {
                 LocalDate dataPrevista = locacao.getDataDevolucao();
                 LocalDate dataRealDevolucao = LocalDate.parse(dataDevolucaoTexto, DateTimeFormatter.ISO_DATE);
-                Pagamento pagamento = new Pagamento(locacao.getValorLocacao(), "Dinheiro", dataRealDevolucao ,locacao);
-                pagamentoController.addPagamento(pagamento);
 
-                double valorFinal = pagamento.calcularPagamento();
-                long diferencaDias = ChronoUnit.DAYS.between(dataPrevista, dataRealDevolucao);
+                // Chama o método para selecionar o tipo de pagamento
+                String tipoPagamento = selecionarTipoPagamento();
 
-                if (diferencaDias > 0) {
-                    JOptionPane.showMessageDialog(this, 
-                        "Devolução atrasada em " + diferencaDias + " dias!\n" +
-                        "Valor atualizado com multa: R$ " + String.format("%.2f", valorFinal),
-                        "Atenção", JOptionPane.WARNING_MESSAGE);
-                } else if (diferencaDias < 0) {
-                    JOptionPane.showMessageDialog(this, 
-                        "Devolução antecipada em " + Math.abs(diferencaDias) + " dias.\n" +
-                        "Valor original: R$ " + String.format("%.2f", valorFinal),
-                        "Informação", JOptionPane.INFORMATION_MESSAGE);
+                if (tipoPagamento != null) {
+                    // Cria o pagamento com o tipo escolhido
+                    Pagamento pagamento = new Pagamento(locacao.getValorLocacao(), tipoPagamento, dataRealDevolucao, locacao);
+                    pagamentoController.addPagamento(pagamento);
+
+                    double valorFinal = pagamento.calcularPagamento();
+                    long diferencaDias = ChronoUnit.DAYS.between(dataPrevista, dataRealDevolucao);
+
+                    if (diferencaDias > 0) {
+                        JOptionPane.showMessageDialog(this, 
+                            "Devolução atrasada em " + diferencaDias + " dias!\n" +
+                            "Valor atualizado com multa: R$ " + String.format("%.2f", valorFinal),
+                            "Atenção", JOptionPane.WARNING_MESSAGE);
+                    } else if (diferencaDias < 0) {
+                        JOptionPane.showMessageDialog(this, 
+                            "Devolução antecipada em " + Math.abs(diferencaDias) + " dias.\n" +
+                            "Valor original: R$ " + String.format("%.2f", valorFinal),
+                            "Informação", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(this, 
+                            "Devolução realizada no prazo!\n" +
+                            "Valor final: R$ " + String.format("%.2f", valorFinal),
+                            "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(this, 
-                        "Devolução realizada no prazo!\n" +
-                        "Valor final: R$ " + String.format("%.2f", valorFinal),
-                        "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Nenhum tipo de pagamento selecionado.", "Erro", JOptionPane.ERROR_MESSAGE);
                 }
 
             } else {
                 JOptionPane.showMessageDialog(this, "Nenhuma locação encontrada com esse ID.", "Erro", JOptionPane.ERROR_MESSAGE);
             }
 
+            // Salva a lista de pagamentos atualizada
             pagamentodao.salvarLista(pagamentoController.getListaLocacoes());
 
         } catch (NumberFormatException e) {
