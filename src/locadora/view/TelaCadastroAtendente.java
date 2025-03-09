@@ -17,6 +17,7 @@ public class TelaCadastroAtendente extends JDialog {
         super(parent, "Cadastro de Atendente", true);
         funcionarioController = new FuncionarioController();
         funcionarioDAO = new FuncionarioDAO();
+        funcionarioController.setFuncionarios(funcionarioDAO.carregarLista());
         
         // Configurações básicas da tela
         setSize(400, 300);

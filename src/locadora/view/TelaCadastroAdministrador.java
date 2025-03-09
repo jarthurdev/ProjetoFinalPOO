@@ -18,6 +18,7 @@ public class TelaCadastroAdministrador extends JDialog {
         super(parent, "Cadastro de Administrador", true);
         funcionarioController = new FuncionarioController();
         funcionarioDAO = new FuncionarioDAO();
+        funcionarioController.setFuncionarios(funcionarioDAO.carregarLista());
         
         // Configurações básicas da tela
         setSize(400, 300);
