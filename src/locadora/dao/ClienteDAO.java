@@ -24,12 +24,10 @@ import java.util.ArrayList;
 public class ClienteDAO implements Persistencia<Cliente> {
     private final Gson gson;
 
-    // Diretório externo onde os arquivos JSON serão armazenados.
     private final String pastaDados = System.getProperty("user.home") 
             + File.separator + "Locadora" 
             + File.separator + "json";
     
-    // Caminho completo do arquivo JSON.
     private final String arquivo = pastaDados + File.separator + "ClienteDAO.json";
 
     public ClienteDAO() {
@@ -37,22 +35,16 @@ public class ClienteDAO implements Persistencia<Cliente> {
         verificarECriarArquivo();
     }
 
-    /**
-     * Verifica se o arquivo JSON existe no diretório externo.
-     * Se não existir, cria a pasta e tenta copiar o arquivo padrão que está
-     * embutido no JAR (em /locadora/json/ClienteDAO.json).
-     * Caso o recurso padrão não seja encontrado, cria um arquivo novo com uma lista vazia.
-     */
     public void verificarECriarArquivo() {
         File file = new File(arquivo);
         if (!file.exists()) {
-            // Cria o diretório se ele não existir
+
             File diretorio = new File(pastaDados);
             if (!diretorio.exists()) {
                 diretorio.mkdirs();
             }
 
-            // Tenta copiar o arquivo padrão do recurso no JAR
+
             try (InputStream in = getClass().getResourceAsStream("/locadora/json/ClienteDAO.json")) {
                 if (in != null) {
                     try (OutputStream out = new FileOutputStream(file)) {
@@ -67,7 +59,7 @@ public class ClienteDAO implements Persistencia<Cliente> {
                         e.printStackTrace();
                     }
                 } else {
-                    // Se o recurso padrão não for encontrado, cria o arquivo com uma lista vazia
+            
                     file.createNewFile();
                     salvarLista(new ArrayList<>());
                     System.out.println("Arquivo JSON criado vazio em: " + arquivo);
@@ -79,9 +71,6 @@ public class ClienteDAO implements Persistencia<Cliente> {
         }
     }
 
-    /**
-     * Salva a lista de clientes no arquivo JSON externo.
-     */
     public void salvarLista(ArrayList<Cliente> listaClientes) {
         try (Writer writer = new FileWriter(arquivo)) {
             gson.toJson(listaClientes, writer);
@@ -91,9 +80,6 @@ public class ClienteDAO implements Persistencia<Cliente> {
         }
     }
 
-    /**
-     * Carrega e retorna a lista de clientes do arquivo JSON externo.
-     */
     public ArrayList<Cliente> carregarLista() {
         try (Reader reader = new FileReader(arquivo)) {
             Type tipoLista = new TypeToken<ArrayList<Cliente>>(){}.getType();
