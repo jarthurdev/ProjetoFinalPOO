@@ -8,8 +8,10 @@ import java.time.temporal.ChronoUnit;
 import javax.swing.*;
 import locadora.controller.LocacaoController;
 import locadora.controller.PagamentoController;
+import locadora.controller.VeiculoController;
 import locadora.dao.LocacaoDAO;
 import locadora.dao.PagamentoDAO;
+import locadora.dao.VeiculoDAO;
 import locadora.exceptions.LocacaoIdInexistenteException;
 import locadora.model.Locacao;
 import locadora.model.Pagamento;
@@ -23,6 +25,8 @@ public class TelaDevolucao extends JDialog {
     private LocacaoController locacaoController;
     private PagamentoController pagamentoController;
     private PagamentoDAO pagamentodao;
+    private VeiculoController veiculoController;
+    private VeiculoDAO veiculoDAO;
 
     public void carregarDados() {
         locacaoController = new LocacaoController();
@@ -31,6 +35,9 @@ public class TelaDevolucao extends JDialog {
         pagamentoController = new PagamentoController();
         pagamentodao = new PagamentoDAO();
         pagamentoController.setListaLocacoes(pagamentodao.carregarLista());
+        veiculoController = new VeiculoController();
+        veiculoDAO = new VeiculoDAO();
+        veiculoController.setListaVeiculos(veiculoDAO.carregarLista());
     }
 
     public TelaDevolucao(JFrame parent) {
@@ -135,7 +142,8 @@ public class TelaDevolucao extends JDialog {
 
                     pagamentoController.addPagamento(pagamento);
                     pagamentodao.salvarLista(pagamentoController.getListaLocacoes());
-                    locacao.getVeiculo().setStatus(true);
+                    veiculoController.buscarVeiculoPorPlaca((locacao.getVeiculo().getPlaca())).setStatus(true);;
+                    veiculoDAO.salvarLista(veiculoController.getListaVeiculos());
                     locacaoController.removerLocacao(locacao);
                     locacaodao.salvarLista(locacaoController.getListaLocacoes());
                     listarTodasLocacoes();
@@ -173,4 +181,5 @@ public class TelaDevolucao extends JDialog {
             JOptionPane.showMessageDialog(this, "Formato de data inválido! Use YYYY-MM-DD.", "Erro", JOptionPane.ERROR_MESSAGE);
         } 
     }
+
 }

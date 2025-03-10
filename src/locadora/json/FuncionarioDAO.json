@@ -13,20 +13,5 @@
     "usuario": "Atendente",
     "senha": "Atendente",
     "tipo": "Atendente"
-  },
-  {
-    "usuario": "João",
-    "senha": "5678",
-    "tipo": "Gerente"
-  },
-  {
-    "usuario": "Brunno",
-    "senha": "6969",
-    "tipo": "Atendente"
-  },
-  {
-    "usuario": "ShaolinMatador",
-    "senha": "eunaosei",
-    "tipo": "Administrador"
   }
 ]

@@ -10,17 +10,5 @@
     "cpf": "987.654.321-00",
     "telefone": "9876-5432",
     "email": "maria.oliveira@email.com"
-  },
-  {
-    "nome": "Arthur Antão",
-    "cpf": "123.321.231-02",
-    "telefone": "1188888888",
-    "email": "antao@gmail.com"
-  },
-  {
-    "nome": "Fernando Moraes",
-    "cpf": "18989181900",
-    "telefone": "87912341234",
-    "email": "fernandomoraescorretor@gmail.com"
   }
 ]

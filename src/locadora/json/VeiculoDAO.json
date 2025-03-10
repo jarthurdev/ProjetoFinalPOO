@@ -3,7 +3,7 @@
     "placa": "ABC1234",
     "modelo": "Sedan",
     "ano": 2020,
-    "status": false,
+    "status": true,
     "tipo": "Carro"
   },
   {
@@ -19,54 +19,5 @@
     "ano": 2018,
     "status": true,
     "tipo": "Caminhao"
-  },
-  {
-    "placa": "XYZ7777",
-    "modelo": "sedan",
-    "ano": 2015,
-    "status": false,
-    "tipo": "Carro"
-  },
-  {
-    "placa": "ABC7777",
-    "modelo": "porsche",
-    "ano": 2015,
-    "status": true,
-    "tipo": "Carro"
-  },
-  {
-    "placa": "CAB7777",
-    "modelo": "corolla",
-    "ano": 2015,
-    "status": true,
-    "tipo": "Carro"
-  },
-  {
-    "placa": "AVC5678",
-    "modelo": "POP 110",
-    "ano": 2022,
-    "status": true,
-    "tipo": "Moto"
-  },
-  {
-    "placa": "QSA5678",
-    "modelo": "BROS 160",
-    "ano": 2022,
-    "status": true,
-    "tipo": "Moto"
-  },
-  {
-    "placa": "IOT5678",
-    "modelo": "FAN 160",
-    "ano": 2022,
-    "status": true,
-    "tipo": "Moto"
-  },
-  {
-    "placa": "KRL0025",
-    "modelo": "Nissan",
-    "ano": 2021,
-    "status": false,
-    "tipo": "Carro"
   }
 ]
