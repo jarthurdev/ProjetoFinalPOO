@@ -23,13 +23,13 @@ public class LocacaoController {
         return this.listaLocacoes;
     }
 
-    public Locacao buscarLocacaoPorId(int id) {
+    public Locacao buscarLocacaoPorId(int id) throws Exception {
         for (Locacao locacao : this.listaLocacoes) {
             if (locacao.getId() == id) {
                 return locacao;
             }
         }
-        return null;
+        throw new Exception("Locação não encontrada");
     }
 
     public ArrayList<Locacao> getListaLocacoes(){
