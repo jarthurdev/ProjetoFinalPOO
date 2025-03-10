@@ -23,12 +23,10 @@ import locadora.model.Funcionario;
 public class FuncionarioDAO implements Persistencia<Funcionario> {
     private final Gson gson;
     
-    // Diretório externo onde os arquivos JSON serão armazenados.
     private final String pastaDados = System.getProperty("user.home") 
             + File.separator + "Locadora" 
             + File.separator + "json";
             
-    // Caminho completo do arquivo JSON.
     private final String arquivo = pastaDados + File.separator + "FuncionarioDAO.json";
 
     public FuncionarioDAO() {
@@ -36,22 +34,15 @@ public class FuncionarioDAO implements Persistencia<Funcionario> {
         verificarECriarArquivo();
     }
 
-    /**
-     * Verifica se o arquivo JSON existe no diretório externo.
-     * Se não existir, cria a pasta e tenta copiar o arquivo padrão que está
-     * embutido no JAR (em /locadora/json/FuncionarioDAO.json).
-     * Caso o recurso padrão não seja encontrado, cria um arquivo novo com uma lista vazia.
-     */
     public void verificarECriarArquivo() {
         File file = new File(arquivo);
         if (!file.exists()) {
-            // Cria o diretório se ele não existir
+  
             File diretorio = new File(pastaDados);
             if (!diretorio.exists()) {
                 diretorio.mkdirs();
             }
 
-            // Tenta copiar o arquivo padrão do recurso no JAR
             try (InputStream in = getClass().getResourceAsStream("/locadora/json/FuncionarioDAO.json")) {
                 if (in != null) {
                     try (OutputStream out = new FileOutputStream(file)) {
@@ -66,7 +57,7 @@ public class FuncionarioDAO implements Persistencia<Funcionario> {
                         e.printStackTrace();
                     }
                 } else {
-                    // Se o recurso padrão não for encontrado, cria o arquivo com uma lista vazia
+
                     file.createNewFile();
                     salvarLista(new ArrayList<>());
                     System.out.println("Arquivo JSON criado vazio em: " + arquivo);
@@ -78,9 +69,6 @@ public class FuncionarioDAO implements Persistencia<Funcionario> {
         }
     }
 
-    /**
-     * Salva a lista de funcionários no arquivo JSON externo.
-     */
     public void salvarLista(ArrayList<Funcionario> listaFuncionarios) {
         try (Writer writer = new FileWriter(arquivo)) {
             gson.toJson(listaFuncionarios, writer);
@@ -90,9 +78,6 @@ public class FuncionarioDAO implements Persistencia<Funcionario> {
         }
     }
 
-    /**
-     * Carrega e retorna a lista de funcionários do arquivo JSON externo.
-     */
     public ArrayList<Funcionario> carregarLista() {
         try (Reader reader = new FileReader(arquivo)) {
             JsonArray jsonArray = JsonParser.parseReader(reader).getAsJsonArray();

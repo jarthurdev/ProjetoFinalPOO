@@ -22,12 +22,10 @@ import java.util.ArrayList;
 public class VeiculoDAO implements Persistencia<Veiculo> {
     private final Gson gson;
 
-    // Diretório externo onde os arquivos JSON serão armazenados.
     private final String pastaDados = System.getProperty("user.home") 
             + File.separator + "Locadora" 
             + File.separator + "json";
     
-    // Caminho completo do arquivo JSON.
     private final String arquivo = pastaDados + File.separator + "VeiculoDAO.json";
 
     public VeiculoDAO() {
@@ -36,22 +34,16 @@ public class VeiculoDAO implements Persistencia<Veiculo> {
         verificarECriarArquivo();
     }
 
-    /**
-     * Verifica se o arquivo JSON existe no diretório externo.
-     * Se não existir, cria a pasta e tenta copiar o arquivo padrão que está
-     * embutido no JAR (em /locadora/json/VeiculoDAO.json).
-     * Caso o recurso padrão não seja encontrado, cria um arquivo novo com uma lista vazia.
-     */
     public void verificarECriarArquivo() {
         File file = new File(arquivo);
         if (!file.exists()) {
-            // Cria o diretório se ele não existir
+
             File diretorio = new File(pastaDados);
             if (!diretorio.exists()) {
                 diretorio.mkdirs();
             }
 
-            // Tenta copiar o arquivo padrão do recurso no JAR
+
             try (InputStream in = getClass().getResourceAsStream("/locadora/json/VeiculoDAO.json")) {
                 if (in != null) {
                     try (OutputStream out = new FileOutputStream(file)) {
@@ -66,7 +58,7 @@ public class VeiculoDAO implements Persistencia<Veiculo> {
                         e.printStackTrace();
                     }
                 } else {
-                    // Se o recurso padrão não for encontrado, cria o arquivo com uma lista vazia
+
                     file.createNewFile();
                     salvarLista(new ArrayList<>());
                     System.out.println("Arquivo JSON criado vazio em: " + arquivo);
@@ -78,9 +70,7 @@ public class VeiculoDAO implements Persistencia<Veiculo> {
         }
     }
 
-    /**
-     * Salva a lista de veículos no arquivo JSON externo.
-     */
+
     public void salvarLista(ArrayList<Veiculo> listaVeiculos) {
         try (Writer writer = new FileWriter(arquivo)) {
             gson.toJson(listaVeiculos, writer);
@@ -90,9 +80,7 @@ public class VeiculoDAO implements Persistencia<Veiculo> {
         }
     }
 
-    /**
-     * Carrega e retorna a lista de veículos do arquivo JSON externo.
-     */
+
     public ArrayList<Veiculo> carregarLista() {
         try (Reader reader = new FileReader(arquivo)) {
             JsonArray jsonArray = JsonParser.parseReader(reader).getAsJsonArray();

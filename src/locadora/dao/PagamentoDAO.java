@@ -45,22 +45,15 @@ public class PagamentoDAO implements Persistencia<Pagamento> {
         verificarECriarArquivo();
     }
 
-    /**
-     * Verifica se o arquivo JSON existe no diretório externo.
-     * Se não existir, cria a pasta e tenta copiar o arquivo padrão que está
-     * embutido no JAR (em /locadora/json/PagamentoDAO.json).
-     * Caso o recurso padrão não seja encontrado, cria um arquivo novo com uma lista vazia.
-     */
     public void verificarECriarArquivo() {
         File file = new File(arquivo);
         if (!file.exists()) {
-            // Cria o diretório se ele não existir
+
             File diretorio = new File(pastaDados);
             if (!diretorio.exists()) {
                 diretorio.mkdirs();
             }
 
-            // Tenta copiar o arquivo padrão do recurso no JAR
             try (InputStream in = getClass().getResourceAsStream("/locadora/json/PagamentoDAO.json")) {
                 if (in != null) {
                     try (OutputStream out = new FileOutputStream(file)) {
@@ -75,7 +68,7 @@ public class PagamentoDAO implements Persistencia<Pagamento> {
                         e.printStackTrace();
                     }
                 } else {
-                    // Se o recurso padrão não for encontrado, cria o arquivo com uma lista vazia
+
                     file.createNewFile();
                     salvarLista(new ArrayList<>());
                     System.out.println("Arquivo JSON criado vazio em: " + arquivo);
@@ -87,9 +80,6 @@ public class PagamentoDAO implements Persistencia<Pagamento> {
         }
     }
 
-    /**
-     * Salva a lista de pagamentos no arquivo JSON externo.
-     */
     public void salvarLista(ArrayList<Pagamento> listaPagamentos) {
         try (Writer writer = new FileWriter(arquivo)) {
             gson.toJson(listaPagamentos, writer);
@@ -99,9 +89,6 @@ public class PagamentoDAO implements Persistencia<Pagamento> {
         }
     }
 
-    /**
-     * Carrega e retorna a lista de pagamentos do arquivo JSON externo.
-     */
     public ArrayList<Pagamento> carregarLista() {
         try (Reader reader = new FileReader(arquivo)) {
             Type tipoLista = new TypeToken<ArrayList<Pagamento>>(){}.getType();

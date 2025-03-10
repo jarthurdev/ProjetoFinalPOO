@@ -10,7 +10,7 @@ public class VeiculoAdapter implements JsonSerializer<Veiculo>, JsonDeserializer
     @Override
     public JsonElement serialize(Veiculo veiculo, Type type, JsonSerializationContext context) {
         JsonObject jsonObject = context.serialize(veiculo).getAsJsonObject();
-        jsonObject.addProperty("tipo", veiculo.getClass().getSimpleName()); // Adiciona o tipo da subclasse
+        jsonObject.addProperty("tipo", veiculo.getClass().getSimpleName()); 
         return jsonObject;
     }
 
@@ -18,7 +18,6 @@ public class VeiculoAdapter implements JsonSerializer<Veiculo>, JsonDeserializer
     public Veiculo deserialize(JsonElement json, Type type, JsonDeserializationContext context) throws JsonParseException {
         JsonObject jsonObject = json.getAsJsonObject();
         
-        // Verifica o tipo do veículo no JSON
         String tipo = jsonObject.get("tipo").getAsString();
         
         switch (tipo) {

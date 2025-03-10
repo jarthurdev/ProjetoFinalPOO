@@ -27,12 +27,10 @@ import java.util.ArrayList;
 public class LocacaoDAO implements Persistencia<Locacao> {
     private final Gson gson;
 
-    // Diretório externo onde os arquivos JSON serão armazenados.
     private final String pastaDados = System.getProperty("user.home") 
             + File.separator + "Locadora" 
             + File.separator + "json";
     
-    // Caminho completo do arquivo JSON.
     private final String arquivo = pastaDados + File.separator + "LocacaoDAO.json";
 
     public LocacaoDAO() {
@@ -46,22 +44,15 @@ public class LocacaoDAO implements Persistencia<Locacao> {
         verificarECriarArquivo();
     }
 
-    /**
-     * Verifica se o arquivo JSON existe no diretório externo.
-     * Se não existir, cria a pasta e tenta copiar o arquivo padrão que está
-     * embutido no JAR (em /locadora/json/LocacaoDAO.json).
-     * Caso o recurso padrão não seja encontrado, cria um arquivo novo com uma lista vazia.
-     */
     public void verificarECriarArquivo() {
         File file = new File(arquivo);
         if (!file.exists()) {
-            // Cria o diretório se ele não existir
+
             File diretorio = new File(pastaDados);
             if (!diretorio.exists()) {
                 diretorio.mkdirs();
             }
 
-            // Tenta copiar o arquivo padrão do recurso no JAR
             try (InputStream in = getClass().getResourceAsStream("/locadora/json/LocacaoDAO.json")) {
                 if (in != null) {
                     try (OutputStream out = new FileOutputStream(file)) {
@@ -76,7 +67,7 @@ public class LocacaoDAO implements Persistencia<Locacao> {
                         e.printStackTrace();
                     }
                 } else {
-                    // Se o recurso padrão não for encontrado, cria o arquivo com uma lista vazia
+
                     file.createNewFile();
                     salvarLista(new ArrayList<>());
                     System.out.println("Arquivo JSON criado vazio em: " + arquivo);
@@ -88,9 +79,6 @@ public class LocacaoDAO implements Persistencia<Locacao> {
         }
     }
 
-    /**
-     * Salva a lista de locações no arquivo JSON externo.
-     */
     public void salvarLista(ArrayList<Locacao> listaLocacoes) {
         try (Writer writer = new FileWriter(arquivo)) {
             gson.toJson(listaLocacoes, writer);
@@ -100,9 +88,6 @@ public class LocacaoDAO implements Persistencia<Locacao> {
         }
     }
 
-    /**
-     * Carrega e retorna a lista de locações do arquivo JSON externo.
-     */
     public ArrayList<Locacao> carregarLista() {
         try (Reader reader = new FileReader(arquivo)) {
             Type tipoLista = new TypeToken<ArrayList<Locacao>>(){}.getType();

@@ -47,7 +47,6 @@ public class Cliente {
         this.email = email;
     }
 
-    // Método para converter um objeto JSON para um Cliente
     public static Cliente fromJson(JsonObject jsonObject) {
         String nome = jsonObject.get("nome").getAsString();
         String cpf = jsonObject.get("cpf").getAsString();

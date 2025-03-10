@@ -11,7 +11,7 @@ public class PeriodAdapter implements JsonSerializer<Period>, JsonDeserializer<P
             jsonObject.addProperty("years", period.getYears());
             jsonObject.addProperty("months", period.getMonths());
             jsonObject.addProperty("days", period.getDays());
-            return jsonObject; // Converte Period para um JSON { "years": 2, "months": 3, "days": 10 }
+            return jsonObject; 
         }
 
     public Period deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
@@ -19,7 +19,7 @@ public class PeriodAdapter implements JsonSerializer<Period>, JsonDeserializer<P
             int years = jsonObject.get("years").getAsInt();
             int months = jsonObject.get("months").getAsInt();
             int days = jsonObject.get("days").getAsInt();
-            return Period.of(years, months, days); // Converte o JSON de volta para Period
+            return Period.of(years, months, days); 
     }
 
 }

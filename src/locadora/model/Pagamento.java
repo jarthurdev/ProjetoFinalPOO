@@ -63,13 +63,13 @@ public class Pagamento {
         if (dataPagamento.isAfter(locacao.getDataDevolucao())) {
             if (locacao.veiculo instanceof Carro) {
                 this.valor = valor * 1.1;
-                return valor; // 10% multa
+                return valor;
             } else if (locacao.veiculo instanceof Moto) {
                 this.valor = valor * 1.05;
-                return valor; // 5% multa
+                return valor; 
             } else {
                 this.valor = valor * 1.2;
-                return valor; // 20% multa 
+                return valor; 
             }
         } else {
             return valor;
