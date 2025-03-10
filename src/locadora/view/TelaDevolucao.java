@@ -3,6 +3,7 @@ package locadora.view;
 import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 import javax.swing.*;
 import locadora.controller.LocacaoController;
@@ -142,7 +143,11 @@ public class TelaDevolucao extends JDialog {
                     Pagamento pagamento = new Pagamento(locacao.getValorLocacao(), tipoPagamento, dataRealDevolucao, locacao);
                     pagamento.setId(pagamentoController.getId());
                     pagamentoController.addPagamento(pagamento);
-
+                    pagamentodao.salvarLista(pagamentoController.getListaLocacoes());
+                    locacao.getVeiculo().setStatus(true);
+                    locacaoController.removerLocacao(locacao);
+                    locacaodao.salvarLista(locacaoController.getListaLocacoes());
+                    listarTodasLocacoes();
                     double valorFinal = pagamento.calcularPagamento();
                     long diferencaDias = ChronoUnit.DAYS.between(dataPrevista, dataRealDevolucao);
 
@@ -170,16 +175,9 @@ public class TelaDevolucao extends JDialog {
                 JOptionPane.showMessageDialog(this, "Nenhuma locação encontrada com esse ID.", "Erro", JOptionPane.ERROR_MESSAGE);
             }
 
-            // Salva a lista de pagamentos atualizada
-            pagamentodao.salvarLista(pagamentoController.getListaLocacoes());
-            locacao.getVeiculo().setStatus(true);
-            locacaoController.removerLocacao(locacao);
-            locacaodao.salvarLista(locacaoController.getListaLocacoes());
-            listarTodasLocacoes();
-
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "ID inválido! Insira um número.", "Erro", JOptionPane.ERROR_MESSAGE);
-        } catch (Exception e) {
+        } catch (DateTimeParseException e) {
             JOptionPane.showMessageDialog(this, "Formato de data inválido! Use YYYY-MM-DD.", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
