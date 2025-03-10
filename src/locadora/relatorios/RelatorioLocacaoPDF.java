@@ -77,7 +77,7 @@ public class  RelatorioLocacaoPDF {
                 table.addCell(l.getCliente().getCpf()).setFontSize(10); //CPF do Cliente
                 table.addCell(l.getDataLocacao().toString()); // Data de locação
                 table.addCell(l.getDataDevolucao().toString()); // Data de Devolução
-                table.addCell(String.format("R$ %d", l.getValorLocacao())); // Valor da Locação
+                table.addCell(String.format("R$ %.2f", l.getValorLocacao())); // Valor da Locação
             }
 
             table.addCell("---"); 

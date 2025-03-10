@@ -12,15 +12,15 @@
     "email": "maria.oliveira@email.com"
   },
   {
-    "nome": "Jonas Madureira",
-    "cpf": "13287312780",
-    "telefone": "12-3812",
-    "email": "joao@"
-  },
-  {
     "nome": "Arthur Antão",
     "cpf": "123.321.231-02",
     "telefone": "1188888888",
     "email": "antao@gmail.com"
+  },
+  {
+    "nome": "Fernando Moraes",
+    "cpf": "18989181900",
+    "telefone": "87912341234",
+    "email": "fernandomoraescorretor@gmail.com"
   }
 ]

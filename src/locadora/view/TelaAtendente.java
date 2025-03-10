@@ -62,8 +62,4 @@ public final class TelaAtendente extends JFrame{
 
     }
 
-     public static void main(String[] args) {
-        new TelaAtendente();
-    }
-
 }

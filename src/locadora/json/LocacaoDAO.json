@@ -1,1 +1,21 @@
-[]
+[
+  {
+    "dataLocacao": "2025-03-10",
+    "dataDevolucao": "2025-03-14",
+    "valorLocacao": 320.0,
+    "id": 1,
+    "veiculo": {
+      "placa": "KRL0025",
+      "modelo": "Nissan",
+      "ano": 2021,
+      "status": false,
+      "tipo": "Carro"
+    },
+    "cliente": {
+      "nome": "Fernando Moraes",
+      "cpf": "18989181900",
+      "telefone": "87912341234",
+      "email": "fernandomoraescorretor@gmail.com"
+    }
+  }
+]

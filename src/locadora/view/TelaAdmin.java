@@ -2,7 +2,6 @@ package locadora.view;
 
 import java.awt.*;
 import javax.swing.*;
-import locadora.view.*;
 
 public final class TelaAdmin extends JFrame{
     
@@ -84,10 +83,6 @@ public final class TelaAdmin extends JFrame{
             new TelaCadastroAtendente(this);
             dispose();
         });
-    }
-
-     public static void main(String[] args) {
-        new TelaAdmin();
     }
 
 }

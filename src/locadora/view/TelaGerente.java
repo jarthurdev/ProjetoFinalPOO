@@ -71,12 +71,7 @@ public final class TelaGerente extends JFrame{
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
         panel.add(button);
 
-        button.addActionListener(l -> new TelaRelatorios());
+        button.addActionListener(l -> new TelaRelatorios(this));
     }
 
-
-    
-    public static void main(String[] args) {
-        new TelaGerente();
-    }
 }
