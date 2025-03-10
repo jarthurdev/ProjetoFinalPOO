@@ -10,6 +10,7 @@ import locadora.controller.LocacaoController;
 import locadora.controller.PagamentoController;
 import locadora.dao.LocacaoDAO;
 import locadora.dao.PagamentoDAO;
+import locadora.exceptions.LocacaoIdInexistenteException;
 import locadora.model.Locacao;
 import locadora.model.Pagamento;
 
@@ -86,15 +87,6 @@ public class TelaDevolucao extends JDialog {
         }
     }
 
-    private Locacao buscarLocacaoPorId(int id) {
-        for (Locacao locacao : locacaoController.getListaLocacoes()) {
-            if (locacao.getId() == id) {
-                return locacao;
-            }
-        }
-        return null;
-    }
-
     private String selecionarTipoPagamento() {
         String[] opcoes = {"Pix", "Débito", "Crédito", "Dinheiro"};
 
@@ -129,7 +121,7 @@ public class TelaDevolucao extends JDialog {
 
         try {
             int idLocacao = Integer.parseInt(idTexto);
-            Locacao locacao = buscarLocacaoPorId(idLocacao);
+            Locacao locacao = locacaoController.buscarLocacaoPorId(idLocacao);
 
             if (locacao != null) {
                 LocalDate dataPrevista = locacao.getDataDevolucao();
@@ -142,14 +134,16 @@ public class TelaDevolucao extends JDialog {
                     // Cria o pagamento com o tipo escolhido
                     Pagamento pagamento = new Pagamento(locacao.getValorLocacao(), tipoPagamento, dataRealDevolucao, locacao);
                     pagamento.setId(pagamentoController.getId());
+                    
+                    double valorFinal = pagamento.calcularPagamento();
+                    long diferencaDias = ChronoUnit.DAYS.between(dataPrevista, dataRealDevolucao);
+
                     pagamentoController.addPagamento(pagamento);
                     pagamentodao.salvarLista(pagamentoController.getListaLocacoes());
                     locacao.getVeiculo().setStatus(true);
                     locacaoController.removerLocacao(locacao);
                     locacaodao.salvarLista(locacaoController.getListaLocacoes());
                     listarTodasLocacoes();
-                    double valorFinal = pagamento.calcularPagamento();
-                    long diferencaDias = ChronoUnit.DAYS.between(dataPrevista, dataRealDevolucao);
 
                     if (diferencaDias > 0) {
                         JOptionPane.showMessageDialog(this, 
@@ -175,12 +169,13 @@ public class TelaDevolucao extends JDialog {
                 JOptionPane.showMessageDialog(this, "Nenhuma locação encontrada com esse ID.", "Erro", JOptionPane.ERROR_MESSAGE);
             }
 
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "ID inválido! Insira um número.", "Erro", JOptionPane.ERROR_MESSAGE);
-        } catch (DateTimeParseException e) {
-            JOptionPane.showMessageDialog(this, "Formato de data inválido! Use YYYY-MM-DD.", "Erro", JOptionPane.ERROR_MESSAGE);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
+        catch (LocacaoIdInexistenteException a) {
+            JOptionPane.showMessageDialog(this, a.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "ID inválido! Insira um número.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }catch (DateTimeParseException e) {
+            JOptionPane.showMessageDialog(this, "Formato de data inválido! Use YYYY-MM-DD.", "Erro", JOptionPane.ERROR_MESSAGE);
+        } 
     }
 }

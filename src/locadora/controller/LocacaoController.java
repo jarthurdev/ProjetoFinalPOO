@@ -2,6 +2,7 @@ package locadora.controller;
 
 import java.util.ArrayList;
 
+import locadora.exceptions.LocacaoIdInexistenteException;
 import locadora.model.Locacao;
 
 public class LocacaoController {
@@ -23,13 +24,13 @@ public class LocacaoController {
         return this.listaLocacoes;
     }
 
-    public Locacao buscarLocacaoPorId(int id) throws Exception {
+    public Locacao buscarLocacaoPorId(int id) throws LocacaoIdInexistenteException {
         for (Locacao locacao : this.listaLocacoes) {
             if (locacao.getId() == id) {
                 return locacao;
             }
         }
-        throw new Exception("Locação não encontrada");
+        throw new LocacaoIdInexistenteException();
     }
 
     public ArrayList<Locacao> getListaLocacoes(){
