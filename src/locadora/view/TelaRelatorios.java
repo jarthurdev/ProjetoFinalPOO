@@ -2,6 +2,10 @@ package locadora.view;
 
 import java.awt.*;
 import javax.swing.*;
+
+import locadora.controller.LocacaoController;
+import locadora.controller.PagamentoController;
+import locadora.controller.VeiculoController;
 import locadora.dao.*;
 import locadora.relatorios.*;
 
@@ -13,6 +17,9 @@ public class TelaRelatorios extends JDialog {
     private LocacaoDAO locacaoDAO;
     private VeiculoDAO veiculoDAO;
     private PagamentoDAO pagamentoDAO;
+    private VeiculoController veiculoController;
+    private LocacaoController locacaoController;
+    private PagamentoController pagamentoController;
 
     public void carregarDados() {
         locacaoPDF = new RelatorioLocacaoPDF();
@@ -21,6 +28,13 @@ public class TelaRelatorios extends JDialog {
         locacaoDAO = new LocacaoDAO();
         veiculoDAO = new VeiculoDAO();
         pagamentoDAO = new PagamentoDAO();
+
+        veiculoController = new VeiculoController();
+        locacaoController = new LocacaoController();
+        pagamentoController = new PagamentoController();
+        veiculoController.setListaVeiculos(veiculoDAO.carregarLista());
+        locacaoController.setListaLocacoes(locacaoDAO.carregarLista());
+        pagamentoController.setListaLocacoes(pagamentoDAO.carregarLista());
     }
 
     public TelaRelatorios(JFrame parent) {
@@ -59,7 +73,7 @@ public class TelaRelatorios extends JDialog {
         estilizarBotao(button);
         panel.add(button);
         
-        button.addActionListener(l -> veiculosPDF.gerarRelatorio(veiculoDAO.carregarLista()));
+        button.addActionListener(l -> veiculosPDF.gerarRelatorio(veiculoController.getListaVeiculos()));
     }
 
     private void gerarRelatorioFaturamento(JPanel panel) {
@@ -68,7 +82,7 @@ public class TelaRelatorios extends JDialog {
         estilizarBotao(button);
         panel.add(button);
         
-        button.addActionListener(l -> pagamentosPDF.gerarRelatorio(pagamentoDAO.carregarLista()));
+        button.addActionListener(l -> pagamentosPDF.gerarRelatorio(pagamentoController.getListaLocacoes()));
     }
 
     private void gerarRelatorioClientes(JPanel panel) {
@@ -77,7 +91,7 @@ public class TelaRelatorios extends JDialog {
         estilizarBotao(button);
         panel.add(button);
         
-        button.addActionListener(l -> locacaoPDF.gerarRelatorio(locacaoDAO.carregarLista()));
+        button.addActionListener(l -> locacaoPDF.gerarRelatorio(locacaoController.getlistaLocacoes()));
     }
 
     private void estilizarBotao(JButton button) {
