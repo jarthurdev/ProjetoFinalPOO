@@ -85,7 +85,6 @@ public class TelaCadastroCliente extends JDialog {
         botaoCadastrar.addActionListener(e -> cadastrarCliente());
         botaoRemover.addActionListener(e -> removerCliente());
 
-        // Exibe os clientes já cadastrados ao iniciar a tela
         atualizarListaClientes();
 
         setVisible(true);
@@ -123,7 +122,6 @@ public class TelaCadastroCliente extends JDialog {
         }
     }
 
-    // Atualiza a área de texto para mostrar a lista de clientes
     private void atualizarListaClientes() {
         areaClientes.setText(clienteController.toString());
     }

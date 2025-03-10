@@ -19,10 +19,10 @@ public class TelaCadastroLocacao extends JDialog {
     private JTextField campoNomeCliente;
     private JTextField campoDatadeDevolucao;
     private JTextField campoDatadeLocacao;
-    private VeiculoController veiculoController; // *************************************************
+    private VeiculoController veiculoController; 
     private JTextArea areaVeiculos;
     private JTextArea areaClientes;
-    private VeiculoDAO veiculodao; // ************************************************************************************
+    private VeiculoDAO veiculodao; 
     private ClienteController clienteController;
     private LocacaoDAO locacaodao;
     private LocacaoController locacaoController;
@@ -36,21 +36,20 @@ public class TelaCadastroLocacao extends JDialog {
         setLayout(null);
         setResizable(false);
 
-        veiculoController = new VeiculoController(); // *************************************************
-        veiculodao = new VeiculoDAO(); // ************************************************************************************
+        veiculoController = new VeiculoController(); 
+        veiculodao = new VeiculoDAO(); 
         clienteController = new ClienteController();
         locacaoController = new LocacaoController();
         locacaodao = new LocacaoDAO();
         locacaoController.setListaLocacoes(locacaodao.carregarLista());
         clientedao = new ClienteDAO();
-        // Criação do painel
+
         JPanel panel = new JPanel();
         panel.setBounds(0, 0, 400, 600);
         panel.setLayout(null);
         panel.setBackground(new Color(31, 36, 33));
         add(panel);
 
-        // Criação dos componentes
         JLabel labelPlaca = new JLabel("Placa:");
         campoPlaca = new JTextField();
         JLabel labelNomeCliente = new JLabel("Nome:");
@@ -63,9 +62,8 @@ public class TelaCadastroLocacao extends JDialog {
         JLabel labelDisponiveis = new JLabel("Veículos disponíveis:");
         JLabel labelClientes = new JLabel("Clientes:");
         
-        areaVeiculos = new JTextArea(); // Área de texto para exibir veículos // *************************************************
-        areaVeiculos.setEditable(false); // ************************************************************************************
-        areaClientes = new JTextArea(); // Área de texto para exibir clientes
+        areaVeiculos = new JTextArea(); 
+        areaClientes = new JTextArea(); 
         areaClientes.setEditable(false);
         JScrollPane scrollPaneV = new JScrollPane(areaVeiculos);
         JScrollPane scrollPaneC = new JScrollPane(areaClientes);
@@ -84,7 +82,6 @@ public class TelaCadastroLocacao extends JDialog {
         panel.add(labelDisponiveis);
         panel.add(labelClientes);
 
-        // Definindo posições dos componentes
         labelPlaca.setBounds(20, 20, 100, 20);
         labelPlaca.setForeground(Color.WHITE);
         campoPlaca.setBounds(120, 20, 250, 20);
@@ -112,25 +109,20 @@ public class TelaCadastroLocacao extends JDialog {
         labelClientes.setBounds(20, 420, 200, 20);
         labelClientes.setForeground(Color.WHITE);
 
-        // Carregando a lista de veículos
         veiculoController.setListaVeiculos(veiculodao.carregarLista()); 
-        listarVeiculosDisponiveis(); // Exibe veículos disponíveis
+        listarVeiculosDisponiveis(); 
 
-        clienteController.setListaClientes(clientedao.carregarLista()); // Carrega os clientes ao iniciar a tela
+        clienteController.setListaClientes(clientedao.carregarLista()); 
         for (Cliente cliente : clienteController.getListaClientes()) {
-            areaClientes.append(cliente.toString() + "\n \n"); // Adiciona cada cliente à área de texto
+            areaClientes.append(cliente.toString() + "\n \n");
         }
 
-        // Ação do botão Registrar
         botaoRegistrar.addActionListener(e -> {
-            // Verificar se os campos estão preenchidos
             if (campoPlaca.getText().isEmpty() || campoNomeCliente.getText().isEmpty() || campoDatadeDevolucao.getText().isEmpty()) {
-                // Exibir mensagem de erro se algum campo estiver vazio
                 JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
-                return; // Retorna e não continua o processamento
+                return;
             }
 
-            // Caso todos os campos estejam preenchidos, continua o processo de registro
             String placa = campoPlaca.getText();
             Veiculo veiculo = veiculoController.buscarVeiculoPorPlaca(placa);
             LocalDate dataDevolucao = LocalDate.parse(campoDatadeDevolucao.getText());
@@ -138,9 +130,9 @@ public class TelaCadastroLocacao extends JDialog {
             Cliente cliente = clienteController.buscarCliente(campoNomeCliente.getText());
 
             if (veiculo != null && cliente != null) {
-                veiculoController.alterarStatusVeiculoPorPlaca(placa); // Altera o status para false
-                veiculodao.salvarLista(veiculoController.getListaVeiculos()); // Salva a lista alterada
-                listarVeiculosDisponiveis(); // Atualiza a lista na interface
+                veiculoController.alterarStatusVeiculoPorPlaca(placa); 
+                veiculodao.salvarLista(veiculoController.getListaVeiculos()); 
+                listarVeiculosDisponiveis(); 
                 JOptionPane.showMessageDialog(this, "Veículo registrado com sucesso!");
 
                 locacaoController.adicionarLocacao(new Locacao(veiculo, cliente, datadeLocacao, dataDevolucao));
@@ -151,15 +143,13 @@ public class TelaCadastroLocacao extends JDialog {
             }
         });
 
-        // Tornando a tela visível
         setVisible(true);
     }
 
-    // Método para listar os veículos disponíveis (status == true)
     private void listarVeiculosDisponiveis() {
-        areaVeiculos.setText(""); // Limpa a área de texto antes de listar
+        areaVeiculos.setText(""); 
         for (Veiculo veiculo : veiculoController.listarVeiculosDisponiveis()) {
-            areaVeiculos.append(veiculo.toString() + "\n"); // Adiciona cada veículo à área de texto
+            areaVeiculos.append(veiculo.toString() + "\n");
         }
     }
 }

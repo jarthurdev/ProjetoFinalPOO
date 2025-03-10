@@ -89,8 +89,6 @@ public class TelaDevolucao extends JDialog {
 
     private String selecionarTipoPagamento() {
         String[] opcoes = {"Pix", "Débito", "Crédito", "Dinheiro"};
-
-        // Cria o JOptionPane com as opções fornecidas
         int escolha = JOptionPane.showOptionDialog(
             this,
             "Escolha o tipo de pagamento",
@@ -99,14 +97,13 @@ public class TelaDevolucao extends JDialog {
             JOptionPane.INFORMATION_MESSAGE,
             null,
             opcoes,
-            opcoes[0] // Valor padrão, ou seja, a primeira opção (Pix)
+            opcoes[0]
         );
 
-        // Retorna a opção escolhida
         if (escolha >= 0) {
             return opcoes[escolha];
         } else {
-            return null; // Se o usuário fechar o diálogo sem escolher
+            return null;
         }
     }
 
@@ -127,11 +124,9 @@ public class TelaDevolucao extends JDialog {
                 LocalDate dataPrevista = locacao.getDataDevolucao();
                 LocalDate dataRealDevolucao = LocalDate.parse(dataDevolucaoTexto, DateTimeFormatter.ISO_DATE);
 
-                // Chama o método para selecionar o tipo de pagamento
                 String tipoPagamento = selecionarTipoPagamento();
 
                 if (tipoPagamento != null) {
-                    // Cria o pagamento com o tipo escolhido
                     Pagamento pagamento = new Pagamento(locacao.getValorLocacao(), tipoPagamento, dataRealDevolucao, locacao);
                     pagamento.setId(pagamentoController.getId());
                     

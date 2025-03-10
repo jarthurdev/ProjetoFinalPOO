@@ -47,7 +47,7 @@ public class TelaCadastroVeiculo extends JDialog {
         JButton botaoCadastrar = new JButton("Cadastrar");
         JButton botaoRemover = new JButton("Remover");
     
-        areaVeiculos = new JTextArea(); // 🔴 AGORA ESTÁ INICIALIZADA ANTES DE CHAMAR listarVeiculos()
+        areaVeiculos = new JTextArea();
         areaVeiculos.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(areaVeiculos);
     
@@ -88,8 +88,8 @@ public class TelaCadastroVeiculo extends JDialog {
         botaoCadastrar.addActionListener(e -> cadastrarVeiculo());
         botaoRemover.addActionListener(e -> removerVeiculo());
     
-        veiculoController.setListaVeiculos(veiculodao.carregarLista()); // 🔵 MOVIDO PARA AQUI, APÓS A INICIALIZAÇÃO DOS COMPONENTES
-        listarVeiculos(); // 🔵 AGORA NÃO VAI CAUSAR NullPointerException
+        veiculoController.setListaVeiculos(veiculodao.carregarLista()); 
+        listarVeiculos(); 
     
         setVisible(true);
     }
@@ -126,9 +126,9 @@ public class TelaCadastroVeiculo extends JDialog {
         }
 
         veiculoController.cadastrarVeiculo(veiculo);
-        veiculodao.salvarLista(veiculoController.getListaVeiculos()); // Salva a lista após cadastrar
+        veiculodao.salvarLista(veiculoController.getListaVeiculos()); 
         JOptionPane.showMessageDialog(this, "Veículo cadastrado com sucesso!");
-        listarVeiculos(); // Atualiza a lista após cadastrar
+        listarVeiculos();
     }
 
     private void removerVeiculo() {
@@ -139,8 +139,8 @@ public class TelaCadastroVeiculo extends JDialog {
 
             if (veiculoRemovido != null) {
                 veiculoController.removerVeiculo(veiculoRemovido);
-                veiculodao.salvarLista(veiculoController.getListaVeiculos()); // Salva a lista após remover
-                listarVeiculos(); // Atualiza a lista de veículos
+                veiculodao.salvarLista(veiculoController.getListaVeiculos());
+                listarVeiculos(); 
                 JOptionPane.showMessageDialog(this, "Veículo removido com sucesso!");
             } else {
                 JOptionPane.showMessageDialog(this, "Veículo não encontrado!", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -151,9 +151,9 @@ public class TelaCadastroVeiculo extends JDialog {
     }
 
     private void listarVeiculos() {
-        areaVeiculos.setText(""); // Limpa a área de texto antes de listar
+        areaVeiculos.setText(""); 
         for (Veiculo veiculo : veiculoController.getListaVeiculos()) {
-            areaVeiculos.append(veiculo.toString() + "\n"); // Adiciona cada veículo à área de texto
+            areaVeiculos.append(veiculo.toString() + "\n"); 
         }
     }
 }

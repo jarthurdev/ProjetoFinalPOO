@@ -19,21 +19,18 @@ public class TelaCadastroGerente extends JDialog {
         funcionarioDAO = new FuncionarioDAO();
         funcionarioController.setFuncionarios(funcionarioDAO.carregarLista());
         
-        // Configurações básicas da tela
         setSize(400, 300);
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(parent);
         setLayout(null);
         setResizable(false);
 
-        // Painel de fundo
         JPanel panel = new JPanel();
         panel.setBounds(0, 0, 400, 300);
         panel.setLayout(null);
         panel.setBackground(new Color(31, 36, 33));
         add(panel);
 
-        // Componentes de interface
         JLabel labelLogin = new JLabel("Login:");
         campoLogin = new JTextField();
         JLabel labelSenha = new JLabel("Senha:");
@@ -42,7 +39,6 @@ public class TelaCadastroGerente extends JDialog {
         campoConfirmarSenha = new JPasswordField();
         JButton botaoCadastrar = new JButton("Cadastrar");
 
-        // Adicionando componentes ao painel
         panel.add(labelLogin);
         panel.add(campoLogin);
         panel.add(labelSenha);
@@ -51,7 +47,6 @@ public class TelaCadastroGerente extends JDialog {
         panel.add(campoConfirmarSenha);
         panel.add(botaoCadastrar);
 
-        // Definindo o posicionamento e tamanho dos componentes
         labelLogin.setBounds(20, 20, 100, 20);
         labelLogin.setForeground(Color.WHITE);
         campoLogin.setBounds(120, 20, 250, 20);
@@ -63,10 +58,8 @@ public class TelaCadastroGerente extends JDialog {
         campoConfirmarSenha.setBounds(170, 100, 200, 20);
         botaoCadastrar.setBounds(20, 140, 350, 30);
 
-        // Ação do botão Cadastrar
         botaoCadastrar.addActionListener(e -> cadastrarGerente());
 
-        // Tornando a tela visível
         setVisible(true);
     }
 
@@ -75,7 +68,6 @@ public class TelaCadastroGerente extends JDialog {
         String senha = new String(campoSenha.getPassword()).trim();
         String confirmarSenha = new String(campoConfirmarSenha.getPassword()).trim();
 
-        // Validação dos campos
         if (login.isEmpty() || senha.isEmpty() || confirmarSenha.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos.", "Erro", JOptionPane.ERROR_MESSAGE);
             return;
@@ -87,16 +79,12 @@ public class TelaCadastroGerente extends JDialog {
         }
 
         try {
-            // Chamando o método do controller para cadastrar o administrador
             funcionarioController.cadastrarGerente(login, senha, "Gerente");
 
-            // Salvando a lista de funcionários no arquivo JSON
             funcionarioDAO.salvarLista(funcionarioController.getFuncionarios()); 
 
-            // Mensagem de sucesso
             JOptionPane.showMessageDialog(this, "Gerente cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 
-            // Fechando a tela
             dispose();
 
         } catch (Exception e) {

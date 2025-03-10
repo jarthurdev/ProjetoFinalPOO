@@ -94,8 +94,8 @@ public class TelaLogin extends JFrame{
                 }         
             } else {
                 JOptionPane.showMessageDialog(this, "Login ou senha incorretos!", "Erro", JOptionPane.ERROR_MESSAGE);
-                login.setText(""); // Limpa o campo de login
-                senha.setText(""); // Limpa o campo de senha
+                login.setText(""); 
+                senha.setText(""); 
             }
         });
     }
