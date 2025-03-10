@@ -11,7 +11,13 @@ public class Pagamento {
 
     protected Locacao locacao;
     
-
+    public Pagamento(double valor, String metodo, LocalDate dataPagamento,Locacao locacao, int id) {
+        this.valor = valor;
+        this.metodo = metodo;
+        this.dataPagamento = dataPagamento;
+        this.locacao = locacao;
+        this.id = id;
+    }
     public Pagamento(double valor, String metodo, LocalDate dataPagamento,Locacao locacao) {
         this.valor = valor;
         this.metodo = metodo;

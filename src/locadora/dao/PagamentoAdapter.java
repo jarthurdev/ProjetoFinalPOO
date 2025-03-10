@@ -36,7 +36,7 @@ public class PagamentoAdapter implements JsonSerializer<Pagamento>, JsonDeserial
 
         Locacao locacao = context.deserialize(jsonObject.get("locacao"), Locacao.class);
 
-        return new Pagamento(valor, metodo, dataPagamento, locacao);
+        return new Pagamento(valor, metodo, dataPagamento, locacao, id);
     }
 }
 
