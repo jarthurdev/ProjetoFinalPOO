@@ -1,18 +1,36 @@
-## Getting Started
+# 🚗 Sistema de Locadora de Veículos – Java
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Sistema completo para gerenciamento de locação de veículos, desenvolvido com foco em aplicar os pilares da Programação Orientada a Objetos em Java.
 
-## Folder Structure
+---
 
-The workspace contains two folders by default, where:
+## 🧩 Principais Funcionalidades
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+- 📋 **Cadastro de veículos e clientes**
+- 🔄 **Registro de locações e devoluções**
+- 💰 **Cálculo de custo, multa e pagamentos**
+- 📄 **Relatórios gerenciais em PDF**
+- 🔐 **Controle de acesso por perfil (Admin, Gerente, Atendente)**
+- 💾 **Persistência de dados com JSON**
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+---
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+## 🧠 Conceitos de POO Aplicados
 
-## Dependency Management
+- ✅ Encapsulamento, Herança, Polimorfismo  
+- ✅ Classes e métodos abstratos  
+- ✅ Interfaces e DAO Pattern  
+- ✅ Tratamento de exceções  
+- ✅ Organização modular com pacotes (`model`, `dao`, `controller`, `view`)  
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+- **Java SE 17+**
+- **Swing** para interface gráfica
+- **Gson** para manipulação de JSON
+- **iText** para geração de PDF
+- **Git** e **GitHub** para versionamento
+
+---
